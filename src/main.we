@@ -1,0 +1,107 @@
+<!-- 模版，特定语法，DSL写法参考weex提供的samples-->
+<template>
+  <div class="wrap" onfocus="{{rotate}}" onload="{{rotate}}">
+    <div class="logo_wrap">
+       <image class="img_logo" src="{{splash_logo}}" onclick="{{rotate}}" />
+    </div>
+    <div id="animation" style="transform-origin:{{transformOrigin}}">
+       <image class="img_circle" onfocus="{{rotate}}" src="{{splash_circle}}" onclick="{{rotate}}" />
+    </div>
+  </div>
+</template>
+<style>
+  /*千万注意，weex目前只支持部分css样式，详见官方文档。
+   如果H5能渲染，而app无法渲染，很可能是style或者布局有问题*/
+  .wrap{
+      align-items: center;
+      justify-content: center;
+      background-color: #000;
+  }
+  .img_circle {
+    /*不支持100%*/
+    width: 400; height:400;
+    align-items: center;
+    justify-content: center;
+    /*position:absolute;z-index: 10;left:0px;top:0px;*/
+  }
+   .logo_wrap {
+    width: 300; height:300;
+  }
+  .img_logo {
+   width: 300; height:300;
+ }
+</style>
+
+<script>
+  //引入第三方组件，可以在package.json里面配置依赖devDependencies
+  require('weex-components');
+  module.exports = {
+    data: {
+      splash_circle:'//duqian291902259.github.io/dusan/oair/splash_circle.png',
+      splash_logo:'//gw.alicdn.com/tps/i2/TB1DpsmMpXXXXabaXXX20ySQVXX-512-512.png_400x400.jpg',
+      transformOrigin: 'center center',
+      current_rotate: 0,
+      current_scale: 1,
+      current_color: '#FF0000',
+      current_opacity: 1,
+      current_translate: '',
+      current_transform: '',
+      isStop: false
+    },
+    ready: function () {
+       console.log('ready', "ready");
+       this.rotate();
+    },
+    methods: {
+      goSite: function () {
+           console.log('goSite', "goSite");
+           //如果pc调试，加载这个页面渲染
+           this.$openURL('http://192.168.100.47:8080/index.html?page=./src/build/guide.js');
+           //如果app调试，打开这个页面渲染
+           //this.$openURL('http://192.168.100.47:8080/src/build/guide.js');
+      },
+      testClick: function() {
+           console.log('testClick', "testClick");
+           this.$call('modal', 'toast', {'message': 'Welcome to Weex...'});
+      },
+      anim: function(styles, timingFunction, duration, callback) {
+        this.$call('animation', 'transition', this._ids.animation.el.ref, {
+          styles: styles,
+          timingFunction: timingFunction,
+          duration: duration
+        }, callback);
+      },
+      // 旋转
+      rotate: function() {
+        var self = this;
+        self.current_rotate += 30;
+        self.anim({
+          transform: 'rotate(' + self.current_rotate + 'deg)'
+        }, 'ease-in-out', 100, function() {
+          if (self.current_rotate === 360) {
+            self.current_rotate = 0;
+            //self.testClick();
+            self.goSite();
+          }else {
+            self.rotate();
+            if (self.current_rotate === 180) {
+              self.scale();
+            }
+          }
+        });
+      },
+      // 缩放
+      scale: function() {
+        var self = this;
+        self.current_scale = self.current_scale === 2 ? .5 : 0.3
+        self.anim({
+          transform: 'scale(' + self.current_scale + ')'
+        }, 'linear', 500, function() {
+          if (self.current_scale ===0.3) {
+            //self.current_scale =1;
+          }
+        });
+      }
+    }
+  };
+</script>

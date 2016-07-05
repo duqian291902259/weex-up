@@ -1,0 +1,58 @@
+<template>
+  <scroller>
+      <wxc-panel title="Dusan Weex" type="primary">
+         <div class="wrap">
+            <text class="wrap_text" onclick="goSite">Hello,Weex from Dusan!</text>
+            <wxc-button value="用户登陆" type="success" onclick="{{testClick}}"></wxc-button>
+            <a class='a_link' href="http://g.tbcdn.cn/ali-wireless-h5/res/0.0.16/hello.js">
+               <wxc-tip type="info" value="更多精彩正在施工...duqian2010@gmail.com"></wxc-tip>
+            </a>
+            <image class="img" src="{{img}}"  onclick="{{testClick}}" ></image>
+            <!-- <marquee-demo></marquee-demo> -->
+        </div>
+    </wxc-panel>
+  </scroller>
+</template>
+
+<style>
+  .wrap{
+      width:700; height: 800;
+      align-items: center;
+      justify-content: center;
+  }
+  .wrap_text{
+    font-size:25;margin-top:20;height:50;
+  }
+  .img {
+    width: 200; height: 200;align-items: center;justify-content: center;
+  }
+  .a_link{
+    margin-top: 20;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+<script>
+  require('weex-components');
+  module.exports = {
+    data: {
+      //ctHeight: 50,
+      img: '//gw.alicdn.com/tps/i2/TB1DpsmMpXXXXabaXXX20ySQVXX-512-512.png_400x400.jpg'
+    },
+    ready: function () {
+      //this.ctHeight = this.$getConfig().env.deviceHeight
+       console.log('ready', "ready");
+    },
+    methods: {
+      testClick: function() {
+         console.log('testClick', "testClick");
+         this.$call('modal', 'toast', {'message': 'Thank you！'});
+      },
+      goSite: function () {
+         console.log('goSite', "goSite");
+         this.$openURL('http://duqian.net.cn')
+      }
+    }
+  };
+</script>
