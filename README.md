@@ -72,5 +72,12 @@ demo虽小，也能显现weex项目的结构和特点，三端统一，write onc
 
 weex的强大之处，有待研究，后续完善。
 
+更多内容，请看相关博文：
+
+[1，Weex开源测试之环境搭建，weex未来展望](http://blog.csdn.net/dzsw0117/article/details/51702319)
+
+[2，Weex开发笔记](http://blog.csdn.net/dzsw0117/article/details/51773175)
+
+
 ### Thanks to weex team！
 Weex，I will follow you!
