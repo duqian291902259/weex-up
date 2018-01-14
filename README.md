@@ -44,11 +44,11 @@ npm run serve
 
 ### debug and run
 
-开启server后，浏览器输入http://localhost:8080/，可以预览页面。localhost改为自己电脑的ip地址，方便pc和app中查看效果。
+开启server后，浏览器输入http://localhost:8080/，可以预览页面。
 
 1，在APP中渲染：
 
-build后的目标代码，将对应的url生成二维码后，用官方的playground扫描二维码，可以在app中渲染： 
+build后的目标代码，将对应的url生成二维码(localhost改为自己电脑的ip地址），方便用官方的playground扫描二维码并在app中渲染： 
 http://192.168.100.47:8080/src/build/main.js
 
 2，在浏览器中预览页面效果：
