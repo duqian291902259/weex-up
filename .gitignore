@@ -1,2 +1,17 @@
 node_modules
 dist
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+/misc.xml
+/.idea/
+.DS_Store
+bin/
+gen/
+out/
