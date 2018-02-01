@@ -6,6 +6,23 @@
 This demo is based on weex.
 so,you should ensure that installed the environment of weex ,A framework for building Mobile cross-platform UI: [http://alibaba.github.io/weex](http://alibaba.github.io/weex)
 
+---
+
+更新：2018年新增了android工程，weex demo，主要是演示weex如何加载和渲染页面。
+这个demo基于weex sdk及官方demo，新增了在同一个activity用多个WXSDKInstance渲染不同的页面，并且可以调节容器大小，改变位置。
+
+#### 1，多WXSDKInstance实现子页面
+
+#### 2，从android asset目录加载weex js
+
+#### 3，从网络加载weex js
+
+#### 4，使用Fragment加载wewex
+
+以下操作，基于weex早期版本，依然适用，但建议移步最新的官方文档。以最新的语法和sdk为准。
+
+---
+
 ### Install dependencies
 cd path/to/project and install dependencies.
 
@@ -59,7 +76,7 @@ http://192.168.100.47:8080/index.html?page=./src/build/main.js
 ---
 
 ### Overview 
-接触了一下weex，是不是感觉666？该demo仅用weex实现了splash，guide，home页面，交互主要是点击，左右，上下滑动。
+scr中的三个页面，是用weex实现，分别为splash，guide，home页面，交互主要是点击，左右，上下滑动等，展示图片，文本，动画等效果。
 
 1，进入splash页面，有个loading动画效果，缩放，旋转。
 
@@ -74,11 +91,9 @@ http://192.168.100.47:8080/index.html?page=./src/build/main.js
 ![home界面](https://github.com/duqian291902259/weex-demo-dusan/blob/master/screenshot/page-home.png)
 
 ### Future 
-demo虽小，也能显现weex项目的结构和特点，三端统一，write once，run everywhere.有常见的移动端交互，动画，事件。
+demo虽小，也能显现weex项目的结构和特点，三端统一，write once，run everywhere.sdk逐步完善，满足各种场景交互，动画，事件等。
 
-weex的强大之处，有待研究，后续完善。
-
-更多内容，请看相关博文：
+早期相关博文：
 
 [1，Weex开源测试之环境搭建，weex未来展望](http://blog.csdn.net/dzsw0117/article/details/51702319)
 

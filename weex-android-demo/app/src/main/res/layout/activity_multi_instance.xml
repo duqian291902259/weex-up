@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ccc">
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="哈哈哈，点我，使用另一个WXSDKInstance实例渲染"/>
+
+    <FrameLayout
+        android:id="@+id/containerA"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/tv_info"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        />
+
+    <FrameLayout
+        android:id="@+id/containerB"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp">
+        <Button
+            android:id="@+id/btn_change_view"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="改变view大小"/>
+    </RelativeLayout>
+</RelativeLayout>

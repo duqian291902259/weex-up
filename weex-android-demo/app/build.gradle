@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        applicationId "com.weex.sample"
+        minSdkVersion 18
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        /**
+         * 必须加，否则64位手机无法加载so文件
+         */
+        ndk {
+            abiFilters "x86"
+            abiFilters "armeabi"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:support-v4:26.1.0'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.alibaba:fastjson:1.1.46'
+    compile 'com.taobao.android:weex_sdk:0.10.0@aar'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+
+    implementation "com.jakewharton:butterknife:8.8.1"
+    annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+}
