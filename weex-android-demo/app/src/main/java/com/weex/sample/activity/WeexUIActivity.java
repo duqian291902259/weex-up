@@ -7,6 +7,7 @@ public class WeexUIActivity extends BaseActivity {
     @Override
     protected void startRenderPage() {
         renderLocalWeexPage("home.js");
+        //renderNetWeexPage("http://192.168.0.68:8081/dist/home.js");
     }
 
     @Override

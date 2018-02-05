@@ -125,6 +125,6 @@ export default {
 
 .webview {
   width: 520px;
-  height: 800px;
+  height: 400px;
 }
 </style>

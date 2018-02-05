@@ -39,10 +39,6 @@ public class MessageActivity extends BaseActivity {
         });
     }
 
-    @Override
-    protected void renderNewPage(String url) {
-        renderNetWeexPage(url);
-    }
 
     @Override
     protected void startRenderPage() {

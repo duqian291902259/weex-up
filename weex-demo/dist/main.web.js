@@ -1,0 +1,9 @@
+// { "framework": "Vue"} 
+
+!function(e){function n(o){if(r[o])return r[o].exports;var t=r[o]={i:o,l:!1,exports:{}};return e[o].call(t.exports,t,t.exports,n),t.l=!0,t.exports}var r={};n.m=e,n.c=r,n.i=function(e){return e},n.d=function(e,r,o){n.o(e,r)||Object.defineProperty(e,r,{configurable:!1,enumerable:!0,get:o})},n.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(r,"a",r),r},n.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},n.p="",n(n.s=20)}({20:/*!*********************************!*\
+  !*** ./temp/main.js?entry=true ***!
+  \*********************************/
+function(module,exports,__webpack_require__){"use strict";eval("\n\nvar App = __webpack_require__(/*! ../src/main.vue */ 8);\nApp.el = '#root';\nnew Vue(App);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMjAuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vdGVtcC9tYWluLmpzP2MyMzEiXSwic291cmNlc0NvbnRlbnQiOlsidmFyIEFwcCA9IHJlcXVpcmUoJy4uL3NyYy9tYWluLnZ1ZScpXG5BcHAuZWwgPSAnI3Jvb3QnXG5uZXcgVnVlKEFwcClcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyB0ZW1wL21haW4uanM/ZW50cnk9dHJ1ZSJdLCJtYXBwaW5ncyI6Ijs7QUFBQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///20\n")},8:/*!**********************!*\
+  !*** ./src/main.vue ***!
+  \**********************/
+function(module,exports){eval("throw new Error(\"Module build failed: Error: ENOENT: no such file or directory, open '/Users/duqian/Downloads/Nonolive/Weex_ReactNative/weex_demo/weex-project/src/main.vue'\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiOC5qcyIsInNvdXJjZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///8\n")}});

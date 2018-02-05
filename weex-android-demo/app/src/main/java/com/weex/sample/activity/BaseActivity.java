@@ -70,14 +70,14 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
             if (Constants.BC_ACTION_RENDER_NET_JS.equals(action)) {
                 String url = intent.getStringExtra("url");
                 if (!TextUtils.isEmpty(url)) {
-                    renderNewPage(url);
+                    //renderNewPage(url);
+                    renderNetWeexPage(url);
                 }
             }
         }
     };
 
-    protected void renderNewPage(String url) {
-    }
+    //protected void renderNewPage(String url) {}
 
     protected void initView() {
     }
