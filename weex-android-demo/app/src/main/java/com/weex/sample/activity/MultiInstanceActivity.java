@@ -196,7 +196,7 @@ public class MultiInstanceActivity extends AppCompatActivity {
         if (mWXSDKInstanceA != null) {
             mWXSDKInstanceA.onActivityDestroy();
             mWXSDKInstanceA.destroy();
-            mWXSDKInstanceA = null;
+            //mWXSDKInstanceA = null;
         }
         destoryInstanceB();
     }
@@ -205,7 +205,7 @@ public class MultiInstanceActivity extends AppCompatActivity {
         if (mWXSDKInstanceB != null) {
             mWXSDKInstanceB.onActivityDestroy();
             mWXSDKInstanceB.destroy();
-            mWXSDKInstanceB = null;
+            //mWXSDKInstanceB = null;
         }
     }
 }
