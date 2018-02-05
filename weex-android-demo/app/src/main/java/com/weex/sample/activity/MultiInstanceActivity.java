@@ -135,7 +135,7 @@ public class MultiInstanceActivity extends AppCompatActivity {
         options.put(WXSDKInstance.BUNDLE_URL, TEST_URL);
         //测试本地网络js
         //mWXSDKInstanceB.renderByUrl("WXSample", TEST_URL, options, null, WXRenderStrategy.APPEND_ONCE);
-        mWXSDKInstanceA.render("WXSample", WXFileUtils.loadAsset("postmsg.js", this), null, null, WXRenderStrategy.APPEND_ASYNC);
+        mWXSDKInstanceB.render("WXSample", WXFileUtils.loadAsset("postmsg.js", this), null, null, WXRenderStrategy.APPEND_ASYNC);
     }
 
 

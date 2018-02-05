@@ -44,7 +44,8 @@ export default {
       console.log("will jump");
       navigator.push(
         {
-          url: "http://192.168.0.68:8081/dist/hello.js", //web用 http://192.168.0.68:8081/web/index.html?page=/dist/hello.js
+          //http://192.168.0.68:8081/dist/hello.js
+          url: "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js", //web用 http://192.168.0.68:8081/web/index.html?page=/dist/hello.js
           animated: "false"
         },
         event => {
