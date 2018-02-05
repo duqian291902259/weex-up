@@ -2,15 +2,15 @@ package com.weex.sample.activity;
 
 import com.weex.sample.R;
 
-public class LocalActivity extends BaseActivity {
+public class WeexUIActivity extends BaseActivity {
 
     @Override
     protected void startRenderPage() {
-        renderLocalWeexPage(JS_NAME);
+        renderLocalWeexPage("home.js");
     }
 
     @Override
     public int getLayoutResId() {
-        return R.layout.activity_local;
+        return R.layout.activity_weex_ui;
     }
 }

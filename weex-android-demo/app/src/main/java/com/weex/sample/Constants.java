@@ -7,5 +7,5 @@ package com.weex.sample;
  *         E-mail:duqian2010@gmail.com
  */
 public class Constants {
-    public static final String BC_ACTION = "duqian.site.weex";
+    public static final String BC_ACTION_RENDER_NET_JS = "duqian.site.weex";
 }

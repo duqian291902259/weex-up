@@ -1,6 +1,7 @@
 package com.weex.sample;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
@@ -22,17 +23,18 @@ import com.weex.sample.extend.module.PhoneInfoModule;
  */
 public class WXApplication extends Application {
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    InitConfig config = new InitConfig.Builder().setImgAdapter(new ImageAdapter()).build();
-    WXSDKEngine.initialize(this, config);
-    try {
-      WXSDKEngine.registerModule("MyMoudle", MyMoudle.class);
-      WXSDKEngine.registerModule("PhoneInfoModule", PhoneInfoModule.class);
-      WXSDKEngine.registerComponent("RichText", RichText.class, false);
-    } catch (WXException e) {
-      e.printStackTrace();
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        try {
+            InitConfig config = new InitConfig.Builder().setImgAdapter(new ImageAdapter()).build();
+            WXSDKEngine.initialize(this, config);
+            WXSDKEngine.registerModule("MyMoudle", MyMoudle.class);
+            WXSDKEngine.registerModule("PhoneInfoModule", PhoneInfoModule.class);
+            WXSDKEngine.registerComponent("RichText", RichText.class, false);
+        } catch (WXException e) {
+            e.printStackTrace();
+            Log.d("dq", "initialize weex sdk error " + e.toString());
+        }
     }
-  }
 }

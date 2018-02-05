@@ -40,4 +40,9 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
     compile 'com.squareup.picasso:picasso:2.5.2'
 
+    //compile 'com.taobao.android.weex_inspection:protocol:1.1.4.1'
+    //compile 'com.taobao.android.weex_inspection:urlconnection_interceptor:1.0.0'
+    compile 'com.taobao.android:weex_inspector:0.13.4'
+    debugCompile 'com.taobao.android:weex_analyzer:0.1.0.5'
+
 }

@@ -7,7 +7,14 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btn_broadcast"
+        android:id="@+id/btn_weex_ui"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Weex UI 组件"/>
+
+    <Button
+        android:id="@+id/btn_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"

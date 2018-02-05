@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.weex.sample.activity.CommunicationActivity"
+    tools:context="com.weex.sample.activity.MessageActivity"
     tools:showIn="@layout/activity_communication">
 
     <LinearLayout

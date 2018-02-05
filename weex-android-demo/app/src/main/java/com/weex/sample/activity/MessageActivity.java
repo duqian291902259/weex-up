@@ -1,18 +1,11 @@
 package com.weex.sample.activity;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.weex.sample.Constants;
 import com.weex.sample.R;
 
 import java.util.HashMap;
@@ -21,7 +14,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class CommunicationActivity extends BaseActivity {
+public class MessageActivity extends BaseActivity {
 
     @BindView(R.id.container)
     FrameLayout container;
@@ -29,7 +22,6 @@ public class CommunicationActivity extends BaseActivity {
     FloatingActionButton fab;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    //http://192.168.0.68:8081/dist/hello.js
     private static String BASE_HOST = "http://192.168.0.68:8081";
     private static String LOCAL_JS_URL = BASE_HOST + "/dist/index.js";
 
@@ -45,24 +37,12 @@ public class CommunicationActivity extends BaseActivity {
                 sendEvent2Js();
             }
         });
-        registerWeexReceiver();
     }
 
-    private void registerWeexReceiver() {
-        registerReceiver(receiver, new IntentFilter(Constants.BC_ACTION));
+    @Override
+    protected void renderNewPage(String url) {
+        renderNetWeexPage(url);
     }
-
-    private BroadcastReceiver receiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            Log.d("dq", "received " + action);
-            String url = intent.getStringExtra("url");
-            if (!TextUtils.isEmpty(url)) {
-                renderNetWeexPage(url);
-            }
-        }
-    };
 
     @Override
     protected void startRenderPage() {

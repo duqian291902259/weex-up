@@ -1,9 +1,13 @@
 package com.weex.sample.activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +17,7 @@ import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
 import com.taobao.weex.utils.WXFileUtils;
+import com.weex.sample.Constants;
 import com.weex.sample.R;
 
 import java.util.HashMap;
@@ -50,12 +55,35 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
         initView();
         initData();
         startRenderPage();
+        registerWeexReceiver();
     }
 
+    private void registerWeexReceiver() {
+        registerReceiver(receiver, new IntentFilter(Constants.BC_ACTION_RENDER_NET_JS));
+    }
 
-    protected void initView() {}
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            Log.d("dq", "received " + action);
+            if (Constants.BC_ACTION_RENDER_NET_JS.equals(action)) {
+                String url = intent.getStringExtra("url");
+                if (!TextUtils.isEmpty(url)) {
+                    renderNewPage(url);
+                }
+            }
+        }
+    };
 
-    protected void initData() {}
+    protected void renderNewPage(String url) {
+    }
+
+    protected void initView() {
+    }
+
+    protected void initData() {
+    }
 
     protected abstract void startRenderPage();
 
@@ -70,7 +98,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
         if (TextUtils.isEmpty(jsName)) {
             return;
         }
-        renderWeexPage(RENDER_TYPE_LOCAL, "file://"+jsName, jsName);
+        renderWeexPage(RENDER_TYPE_LOCAL, "file://" + jsName, jsName);
     }
 
     public abstract int getLayoutResId();
@@ -129,6 +157,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
         }
         if (getLayoutResId() > 0 && unbinder != null) {
             unbinder.unbind();
+        }
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+            receiver = null;
         }
     }
 

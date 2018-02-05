@@ -29,7 +29,7 @@ public class MyMoudle extends WXModule {
         Log.d("dq", "page url =" + url);
         Context context = mWXSDKInstance.getContext();
         Intent intent = new Intent();
-        intent.setAction(Constants.BC_ACTION);
+        intent.setAction(Constants.BC_ACTION_RENDER_NET_JS);
         intent.putExtra("url", url);
         context.sendBroadcast(intent);
         //Toast.makeText(mWXSDKInstance.getContext(), "native send broadcast " + url, Toast.LENGTH_SHORT).show();

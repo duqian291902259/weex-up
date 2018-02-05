@@ -20,12 +20,13 @@ public class FullscreenActivity extends BaseActivity {
 
     @OnClick(R.id.container)
     public void display() {
-        toggle();
+        //toggle();
     }
 
     @Override
     protected void startRenderPage() {
-        renderLocalWeexPage("photo.js");
+        renderLocalWeexPage("guide.js");
+        //renderNetWeexPage("http://192.168.0.68:8081/dist/guide.js");
     }
 
     @Override
