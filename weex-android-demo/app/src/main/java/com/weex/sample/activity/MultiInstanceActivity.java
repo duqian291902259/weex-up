@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXSDKInstance;
@@ -23,19 +22,18 @@ import butterknife.OnClick;
 
 public class MultiInstanceActivity extends AppCompatActivity {
 
-    @BindView(R.id.tv_info)
-    TextView tvInfo;
     @BindView(R.id.containerA)
     FrameLayout containerA;
     @BindView(R.id.containerB)
     FrameLayout containerB;
+    //server端js测试
     private static String BASE_HOST ="http://192.168.0.68:8081";
-    private static String LOCAL_JS_URL = "file://index.js";
     //private static String LOCAL_JS_URL = BASE_HOST+"/dist/hello.js";
-
-    //private static String URL_NET_JS = "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js";
     //private static String TEST_URL = BASE_HOST+"/dist/postmsg.js";
+    //本地js测试
+    private static String LOCAL_JS_URL = "file://index.js";
     private static String TEST_URL = "file://postmsg.js";
+
     private WXSDKInstance mWXSDKInstanceA;
     private WXSDKInstance mWXSDKInstanceB;
 
@@ -96,6 +94,8 @@ public class MultiInstanceActivity extends AppCompatActivity {
         options.put(WXSDKInstance.BUNDLE_URL, LOCAL_JS_URL);
         //测试本地网络js
         //mWXSDKInstanceA.renderByUrl("WXSample", LOCAL_JS_URL, options, null, WXRenderStrategy.APPEND_ONCE);
+
+        //assets
         mWXSDKInstanceA.render("WXSample", WXFileUtils.loadAsset("index.js", this), null, null, WXRenderStrategy.APPEND_ASYNC);
     }
 
@@ -133,8 +133,11 @@ public class MultiInstanceActivity extends AppCompatActivity {
          */
         Map<String, Object> options = new HashMap<>();
         options.put(WXSDKInstance.BUNDLE_URL, TEST_URL);
+
         //测试本地网络js
         //mWXSDKInstanceB.renderByUrl("WXSample", TEST_URL, options, null, WXRenderStrategy.APPEND_ONCE);
+
+        //local assets
         mWXSDKInstanceB.render("WXSample", WXFileUtils.loadAsset("postmsg.js", this), null, null, WXRenderStrategy.APPEND_ASYNC);
     }
 

@@ -24,8 +24,8 @@ module.exports = {
       });
       this.target = "Nono";
 
-      const bc = new BroadcastChannel("DuQian");
-      bc.postMessage("test BroadcastChannel!");
+      //const bc = new BroadcastChannel("DuQian");
+      //bc.postMessage("test BroadcastChannel!");
     },
     testEvent: function() {
       myMoudle.printLog("myMoudle duqian");

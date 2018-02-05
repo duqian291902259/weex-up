@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper" >
     <text class="title" @click="testToast">weex page 2,  {{test}}</text>
-    <button class="btn" @click="testToast">测试组件通信</button>
+    <button class="btn" @appear="ondisappear">测试appear</button>
   </div>
 </template>
 
@@ -32,14 +32,14 @@ module.exports = {
         duration: 0.8
       });
     },
-    created: function() {
-      const bc = new BroadcastChannel("DuQian");
-      bc.onmessage = function(event) {
-        console.log(event.data); // test BroadcastChannel!
-        self.test = event.data;
-        bc.postMessage("I am DuQian.");
-      };
-    }
+    // created: function() {
+    //   const bc = new BroadcastChannel("DuQian");
+    //   bc.onmessage = function(event) {
+    //     console.log(event.data); // test BroadcastChannel!
+    //     self.test = event.data;
+    //     bc.postMessage("I am DuQian.");
+    //   };
+    // }
   }
 };
 </script>

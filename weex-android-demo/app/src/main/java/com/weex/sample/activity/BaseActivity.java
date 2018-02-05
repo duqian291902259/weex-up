@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity implements IWXRenderListener {
-    protected static String URL_LOCAL_JS = "file://hello.js";
     protected static String JS_NAME = "hello.js";
     protected static String URL_NET_JS = "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js";
     protected WXSDKInstance mWXSDKInstance;
@@ -71,11 +70,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
         if (TextUtils.isEmpty(jsName)) {
             return;
         }
-        /*String jsName = "";
-        int index = jsName.lastIndexOf("/");
-        if (index != -1 && jsName.endsWith(".js")) {
-            jsName = jsName.substring(index + 1, jsName.length());
-        }*/
         renderWeexPage(RENDER_TYPE_LOCAL, "file://"+jsName, jsName);
     }
 

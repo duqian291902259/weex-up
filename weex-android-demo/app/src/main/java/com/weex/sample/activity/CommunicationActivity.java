@@ -1,28 +1,27 @@
 package com.weex.sample.activity;
 
-import android.os.Bundle;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.taobao.weex.IWXRenderListener;
-import com.taobao.weex.WXSDKInstance;
-import com.taobao.weex.common.WXRenderStrategy;
-import com.taobao.weex.utils.WXFileUtils;
+import com.weex.sample.Constants;
 import com.weex.sample.R;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CommunicationActivity extends AppCompatActivity {
+public class CommunicationActivity extends BaseActivity {
 
     @BindView(R.id.container)
     FrameLayout container;
@@ -30,17 +29,13 @@ public class CommunicationActivity extends AppCompatActivity {
     FloatingActionButton fab;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    private static String LOCAL_JS_URL = "file://index.js";
-    //private static String URL_NET_JS = "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js";
+    //http://192.168.0.68:8081/dist/hello.js
     private static String BASE_HOST = "http://192.168.0.68:8081";
-    //private static String LOCAL_JS_URL = BASE_HOST + "/dist/index.js";
-    private WXSDKInstance mWXSDKInstance;
+    private static String LOCAL_JS_URL = BASE_HOST + "/dist/index.js";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_communication);
-        ButterKnife.bind(this);
+    protected void initView() {
+        super.initView();
         setSupportActionBar(toolbar);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,98 +45,45 @@ public class CommunicationActivity extends AppCompatActivity {
                 sendEvent2Js();
             }
         });
-        renderWeexPage();
+        registerWeexReceiver();
+    }
+
+    private void registerWeexReceiver() {
+        registerReceiver(receiver, new IntentFilter(Constants.BC_ACTION));
+    }
+
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            Log.d("dq", "received " + action);
+            String url = intent.getStringExtra("url");
+            if (!TextUtils.isEmpty(url)) {
+                renderNetWeexPage(url);
+            }
+        }
+    };
+
+    @Override
+    protected void startRenderPage() {
+        renderLocalWeexPage("index.js");
+        //renderNetWeexPage(LOCAL_JS_URL);
+    }
+
+    @Override
+    public int getLayoutResId() {
+        return R.layout.activity_communication;
     }
 
     @OnClick(R.id.tv_tips)
-    public void send(){
-        renderWeexPage();
+    public void send() {
+        startRenderPage();
         sendEvent2Js();
     }
 
     private void sendEvent2Js() {
-        Map<String,Object> params=new HashMap<>();
-        params.put("key","杜乾duqian");
-        mWXSDKInstance.fireGlobalEventCallback("testEvent",params);
-    }
-
-    private void renderWeexPage() {
-        mWXSDKInstance = new WXSDKInstance(this);
-        mWXSDKInstance.registerRenderListener(new IWXRenderListener() {
-            @Override
-            public void onViewCreated(WXSDKInstance instance, View view) {
-                if (view.getParent() != null) {
-                    ((ViewGroup) view.getParent()).removeView(view);
-                }
-                container.addView(view);
-            }
-
-            @Override
-            public void onRenderSuccess(WXSDKInstance instance, int width, int height) {
-
-            }
-
-            @Override
-            public void onRefreshSuccess(WXSDKInstance instance, int width, int height) {
-
-            }
-
-            @Override
-            public void onException(WXSDKInstance instance, String errCode, String msg) {
-
-            }
-        });
-
-        Map<String, Object> options = new HashMap<>();
-        options.put(WXSDKInstance.BUNDLE_URL, LOCAL_JS_URL);
-        //测试本地网络js
-        // mWXSDKInstance.renderByUrl("WXSample", LOCAL_JS_URL, options, null, WXRenderStrategy.APPEND_ONCE);
-        mWXSDKInstance.render("WXSample", WXFileUtils.loadAsset("index.js", this), null, null, WXRenderStrategy.APPEND_ASYNC);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (mWXSDKInstance != null) {
-            mWXSDKInstance.onActivityStart();
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (mWXSDKInstance != null) {
-            mWXSDKInstance.onActivityResume();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mWXSDKInstance != null) {
-            mWXSDKInstance.onActivityPause();
-        }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (mWXSDKInstance != null) {
-            mWXSDKInstance.onActivityStop();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        destoryWeexInstance();
-    }
-
-    protected void destoryWeexInstance() {
-        if (mWXSDKInstance != null) {
-            mWXSDKInstance.onActivityDestroy();
-            mWXSDKInstance.destroy();
-            mWXSDKInstance = null;
-        }
+        Map<String, Object> params = new HashMap<>();
+        params.put("key", "杜乾duqian");
+        mWXSDKInstance.fireGlobalEventCallback("testEvent", params);
     }
 }

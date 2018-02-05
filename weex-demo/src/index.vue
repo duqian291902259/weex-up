@@ -4,18 +4,26 @@
     <text class="title"  @click="update">Hello DuQian, {{target}} Up!</text>
     <text class="desc">Now, let's use vue to build weex app.</text>
     <button class="btn" @click="update">点我测试toast</button>
-    <a href="http://192.168.0.68:8081/dist/hello.js">
-       <button class="btn">a链接</button>
-    </a> 
+    <button class="btn" @click="sendMsg">发消息，更新页面</button>
     <button class="btn" @click="jump">测试页面跳转</button>
+
+    <textarea class="inputText" value="测试输入法弹出" />
+
+    <!-- <a href="http://duqian.site" target="blank">
+       <text>a链接</text>
+    </a>  -->
+    <div>
+       <web class="webview" src="http://duqian.site" ></web> 
+    </div>
   </div>
 </template>
 
 <script>
+const myMoudle = weex.requireModule("MyMoudle");
 const modal = weex.requireModule("modal");
-var globalEvent = weex.requireModule("globalEvent");
 var navigator = weex.requireModule("navigator");
 
+var globalEvent = weex.requireModule("globalEvent");
 globalEvent.addEventListener("testEvent", function(e) {
   console.log("get testEvent");
   modal.toast({
@@ -45,13 +53,26 @@ export default {
       navigator.push(
         {
           //http://192.168.0.68:8081/dist/hello.js
-          url: "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js", //web用 http://192.168.0.68:8081/web/index.html?page=/dist/hello.js
+          url:
+            "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js", //web用 http://192.168.0.68:8081/web/index.html?page=/dist/hello.js
           animated: "false"
         },
         event => {
           modal.toast({ message: "callback: " + event });
         }
       );
+    },
+    sendMsg() {
+      console.log("sendMsg");
+
+      myMoudle.sendMessage("weex发送指令给native");
+      myMoudle.openPageByUrl(
+        "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js"
+      );
+      modal.toast({
+        message: "sendMsg 2 native",
+        duration: 1
+      });
     }
   }
 };
@@ -59,7 +80,7 @@ export default {
 <style>
 .wrapper {
   align-items: center;
-  height: 1000px;
+  min-height: 1000px;
   background-color: #888;
   padding-top: 50px;
 }
@@ -82,11 +103,28 @@ export default {
 
 .btn {
   width: 350px;
+  height: 60px;
   background-color: antiquewhite;
   margin-top: 10px;
   margin-bottom: 10px;
   align-items: center;
   text-align: center;
   padding: 10px;
+}
+
+.inputText {
+  width: 450px;
+  height: 100px;
+  text-align: left;
+  background-color: beige;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.webview {
+  width: 520px;
+  height: 800px;
 }
 </style>
