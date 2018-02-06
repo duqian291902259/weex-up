@@ -8,13 +8,7 @@
     <button class="btn" @click="jump">测试页面跳转</button>
 
     <textarea class="inputText" value="测试native输入法" />
-
-    <!-- <a href="http://duqian.site" target="blank">
-       <text>a链接</text>
-    </a>  -->
-    <div>
-       <web class="webview" src="http://duqian.site" ></web> 
-    </div>
+    
   </div>
 </template>
 
@@ -35,7 +29,8 @@ export default {
   data: {
     logoUrl:
       "http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png",
-    target: "Weex"
+    target: "Weex",
+    url:"http://dotwe.org/raw/dist/ef2bd84edd068291e8bb8ea334e33cb9.bundle.wx?_wx_tpl=http://dotwe.org/raw/dist/ef2bd84edd068291e8bb8ea334e33cb9.bundle.wx",
   },
   methods: {
     update() {
@@ -52,9 +47,9 @@ export default {
       console.log("will jump");
       navigator.push(
         {
-          //http://192.168.0.68:8081/dist/hello.js
-          url:
-            "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js", //web用 http://192.168.0.68:8081/web/index.html?page=/dist/hello.js
+          url://this.url,
+            "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js",
+             //web用 http://192.168.0.68:8081/web/index.html?page=/dist/web/hello.js
           animated: "false"
         },
         event => {
@@ -66,9 +61,7 @@ export default {
       console.log("sendMsg");
 
       myMoudle.sendMessage("weex发送指令给native");
-      myMoudle.openPageByUrl(
-        "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js"
-      );
+      myMoudle.openPageByUrl(this.url);
       modal.toast({
         message: "sendMsg 2 native",
         duration: 1
@@ -121,10 +114,5 @@ export default {
   margin-bottom: 10px;
   align-items: center;
   text-align: center;
-}
-
-.webview {
-  width: 520px;
-  height: 400px;
 }
 </style>

@@ -1,12 +1,19 @@
 <template>
     <div class="wrap">
         <text class="wrap_text" @click="goSite">Hello,Weex from Dusan!</text>
-        <button value="用户登陆" type="success" @click="testClick">Login</button>
-        <a class='a_link' href="http://g.tbcdn.cn/ali-wireless-h5/res/0.0.16/hello.js">
+
+        <button class="btn" value="用户登陆" type="success" @click="testClick">Click</button>
+
+        <a class='a_link' :href="url">
             <text value="duqian2010@gmail.com"></text>
         </a>
-        <image class="img" :src="img"  @click="testClick" />
-
+        <div @click="testClick">
+           <image class="img" :src="img"  />
+        </div>
+        <div>
+          <text value="内置web组件"></text>
+          <web class="webview" src="http://duqian.site" ></web> 
+        </div>
         <div ref="box" class="box">
           <text class="info">Width: {{size.width}}</text>
           <text class="info">Height: {{size.height}}</text>
@@ -15,6 +22,8 @@
           <text class="info">Left: {{size.left}}</text>
           <text class="info">Right: {{size.right}}</text>
         </div>
+
+        
     </div>
 </template>
 
@@ -26,7 +35,8 @@ var navigator = weex.requireModule("navigator");
 
 module.exports = {
   data: {
-    url: "http://g.tbcdn.cn/ali-wireless-h5/res/0.0.16/hello.js",
+    url:
+      "http://dotwe.org/raw/dist/ef2bd84edd068291e8bb8ea334e33cb9.bundle.wx?_wx_tpl=http://dotwe.org/raw/dist/ef2bd84edd068291e8bb8ea334e33cb9.bundle.wx",
     img:
       "//gw.alicdn.com/tps/i2/TB1DpsmMpXXXXabaXXX20ySQVXX-512-512.png_400x400.jpg",
     size: {
@@ -48,25 +58,29 @@ module.exports = {
       });
     }, 20);
 
-    var platform = this.$getConfig().env.platform.toLowerCase();
-    console.log("platform="+platform);
+    var platform = weex.config.env.platform.toLowerCase();
+    console.log("platform=" + platform);
     if (platform === "web") {
-      this.url = "http://192.168.0.68:8081/web/index.html?page=/dist/web/index.js";
+      this.url =
+        "http://192.168.0.68:8081/web/index.html?page=/dist/web/index.js";
     }
   },
   methods: {
-    testClick: function() {
-      console.log("testClick", "testClick");
-       myMoudle.openPageByUrl(
-        "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js"
-      );
-    },
     goSite() {
       console.log("goSite", "goSite");
       navigator.push({
         url: this.url,
         animated: "false"
       });
+    },
+
+    testClick: function() {
+      console.log("testClick", "testClick");
+      myMoudle.openPageByUrl(
+        this.url
+        //"http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js"
+      );
+      goSite();
     }
   }
 };
@@ -75,7 +89,6 @@ module.exports = {
 <style scoped>
 .wrap {
   width: 750px;
-  height: 800px;
   align-items: center;
   justify-content: center;
 }
@@ -96,12 +109,17 @@ module.exports = {
   justify-content: center;
 }
 .box {
-  width: 450px;
-  height: 300px;
+  width: 720px;
+  height: 220px;
   background-color: #ddd;
   border-width: 2px;
   border-style: solid;
   border-color: rgb(162, 217, 192);
   background-color: rgba(162, 217, 192, 0.2);
+}
+.webview {
+  width: 720px;
+  height: 400px;
+  margin: 10px auto;
 }
 </style>
