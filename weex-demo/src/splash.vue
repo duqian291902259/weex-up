@@ -3,7 +3,7 @@
   <div class="wrap">
     <div class="logo_wrap" @click="testClick" >
        <image class="img_logo" :src="splash_logo" @click="testClick" resize="contain"/>
-       <image class="img_circle" :src="splash_circle" @click="rotate" resize="contain"/>
+       <image class="img_circle" :src="splash_circle" @click="testClick" resize="contain"/>
     </div>
      <!-- <button @click="testClick">animation</button> -->
   </div>
@@ -29,8 +29,8 @@ module.exports = {
       current_transform: "",
       isStop: true,
       nextUrl:
-        "https://github.com/duqian291902259/weex-demo-dusan/blob/master/weex-demo/dist/guide.js"
-    };
+        "http://dotwe.org/raw/dist/ef2bd84edd068291e8bb8ea334e33cb9.bundle.wx?_wx_tpl=http://dotwe.org/raw/dist/ef2bd84edd068291e8bb8ea334e33cb9.bundle.wx",
+     };
   },
 
   methods: {

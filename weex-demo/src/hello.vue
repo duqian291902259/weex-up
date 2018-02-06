@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <button class="btn" @click="testToast">Hello weex</button>
-    <text class="title">Hello DuQian, {{target}} Up!</text>
+    <text class="title"  @click="testToast">Hello DuQian, {{target}} Up!</text>
     <button class="btn" @click="testEvent">测试js和Native交互</button>
   </div>
 </template>
@@ -17,15 +17,25 @@ module.exports = {
     };
   },
   methods: {
+    sendMessage() {
+      console.log("sendMessage", "sendMessage");
+      const bc = new BroadcastChannel("DuQian");
+      bc.postMessage('message from weex pageA')
+    },
     testToast: function() {
       modal.toast({
-        message: "clicked,testToast",
+        message: "clicked,send message",
         duration: 1
       });
       this.target = "Nono";
+      this.sendMessage();
     },
     testEvent: function() {
       myMoudle.printLog("myMoudle duqian");
+    },
+
+    mounted() {
+      console.log("mounted", "mounted");
     }
   }
 };
@@ -36,6 +46,7 @@ module.exports = {
   align-items: center;
   padding-top: 20px;
   background-color: azure;
+  justify-content: center;
 }
 .title {
   line-height: 60px;

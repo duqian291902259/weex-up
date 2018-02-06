@@ -22,23 +22,22 @@ import com.weex.sample.R;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity implements IWXRenderListener {
-    protected static String JS_NAME = "hello.js";
-    protected static String URL_NET_JS = "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js";
     protected WXSDKInstance mWXSDKInstance;
     @BindView(R.id.container)
     protected FrameLayout mContainer;
     protected Context mContext;
     protected View rootView;
     protected Unbinder unbinder;
-    protected int render_type = 0;
     protected static final int RENDER_TYPE_LOCAL = 10;
     protected static final int RENDER_TYPE_NETWORK = 11;
+    protected String pageName = "weex";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +51,9 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
             setContentView(rootView);
             unbinder = ButterKnife.bind(this);
         }
-        initView();
         initData();
+        initView();
+
         startRenderPage();
         registerWeexReceiver();
     }
@@ -70,14 +70,12 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
             if (Constants.BC_ACTION_RENDER_NET_JS.equals(action)) {
                 String url = intent.getStringExtra("url");
                 if (!TextUtils.isEmpty(url)) {
-                    //renderNewPage(url);
+                    pageName = "newPage" + new Random().nextInt() + 10;
                     renderNetWeexPage(url);
                 }
             }
         }
     };
-
-    //protected void renderNewPage(String url) {}
 
     protected void initView() {
     }
@@ -98,7 +96,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
         if (TextUtils.isEmpty(jsName)) {
             return;
         }
-        renderWeexPage(RENDER_TYPE_LOCAL, "file://" + jsName, jsName);
+        renderWeexPage(RENDER_TYPE_LOCAL, Constants.LOCAL_FILE_SCHEMA + jsName, jsName);
     }
 
     public abstract int getLayoutResId();
@@ -109,12 +107,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
         Map<String, Object> options = new HashMap<>();
         options.put(WXSDKInstance.BUNDLE_URL, jsUrl);
         if (render_type == RENDER_TYPE_NETWORK) {
-            mWXSDKInstance.renderByUrl("WXSample", jsUrl, options, null, WXRenderStrategy.APPEND_ONCE);
+            mWXSDKInstance.renderByUrl(pageName, jsUrl, options, null, WXRenderStrategy.APPEND_ONCE);
         } else if (render_type == RENDER_TYPE_LOCAL) {
-            mWXSDKInstance.render("WXSample", WXFileUtils.loadAsset(jsName, this), null, null, WXRenderStrategy.APPEND_ASYNC);
-        } else {
-            mWXSDKInstance.render("WXSample", WXFileUtils.loadAsset(jsName, this), null, null, WXRenderStrategy.APPEND_ASYNC);
+            mWXSDKInstance.render(pageName, WXFileUtils.loadAsset(jsName, this), null, null, WXRenderStrategy.APPEND_ASYNC);
         }
+        //mWXSDKInstance.render(pageName, jsUrl, null, null, WXRenderStrategy.APPEND_ASYNC);
     }
 
     @Override

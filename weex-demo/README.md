@@ -45,5 +45,12 @@ Project is running at http://192.168.0.68:8081/
 preview your page like:
 http://192.168.0.68:8081/web/index.html?page=/dist/index.js
 
+### weex debug
+
+```
+cd path/to/src/
+weex debug index.vue
+```
+
 ### duqian2010@gmail.com
 

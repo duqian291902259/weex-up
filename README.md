@@ -80,6 +80,13 @@ the dist file：
 
 以上ip改为你本地的ip地址，预览使用第一个地址。Native加载网络js可以用第二个地址。dist目录里面生成的xxx.js文件,可以放在assets目录中加载。
 
+### weex debug
+
+```
+cd path/to/src/
+weex debug index.vue
+```
+
 ### weex2016
 weex2016,基于weex早期版本，依然适用，但建议移步最新的官方文档。以最新的语法和sdk为准。
 

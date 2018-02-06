@@ -11,6 +11,7 @@ import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
 import com.taobao.weex.utils.WXFileUtils;
+import com.weex.sample.Constants;
 import com.weex.sample.R;
 
 import java.util.HashMap;
@@ -27,12 +28,12 @@ public class MultiInstanceActivity extends AppCompatActivity {
     @BindView(R.id.containerB)
     FrameLayout containerB;
     //server端js测试
-    private static String BASE_HOST ="http://192.168.0.68:8081";
-    //private static String LOCAL_JS_URL = BASE_HOST+"/dist/hello.js";
-    //private static String TEST_URL = BASE_HOST+"/dist/postmsg.js";
+    //private static String BASE_HOST ="http://192.168.0.68:8081";
+    //private static String LOCAL_JS_URL = BASE_HOST+"/dist/web/hello.js";
+    //private static String TEST_URL = BASE_HOST+"/dist/web/postmsg.js";
     //本地js测试
-    private static String LOCAL_JS_URL = "file://index.js";
-    private static String TEST_URL = "file://postmsg.js";
+    private static String LOCAL_JS_URL = "file://weex/hello.js";
+    private static String TEST_URL = "file://weex/postmsg.js";
 
     private WXSDKInstance mWXSDKInstanceA;
     private WXSDKInstance mWXSDKInstanceB;
@@ -48,18 +49,18 @@ public class MultiInstanceActivity extends AppCompatActivity {
 
     @OnClick({R.id.tv_info})
     public void showSecondWeexPage() {
-        //点击这个
+        //点击这个显示第二个weex实例
         int visibility = containerB.getVisibility();
         containerB.setVisibility(visibility == View.VISIBLE ? View.GONE : View.VISIBLE);
     }
 
     @OnClick(R.id.btn_change_view)
     public void changeView() {
+        containerB.setVisibility(View.VISIBLE);
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) containerB.getLayoutParams();
         layoutParams.width = layoutParams.width+50;
         layoutParams.height = layoutParams.height+50;
         containerB.setLayoutParams(layoutParams);
-        //destoryInstanceB();
         renderPageB();
     }
 
@@ -96,7 +97,8 @@ public class MultiInstanceActivity extends AppCompatActivity {
         //mWXSDKInstanceA.renderByUrl("WXSample", LOCAL_JS_URL, options, null, WXRenderStrategy.APPEND_ONCE);
 
         //assets
-        mWXSDKInstanceA.render("WXSample", WXFileUtils.loadAsset("index.js", this), null, null, WXRenderStrategy.APPEND_ASYNC);
+        String fileName = LOCAL_JS_URL.replace(Constants.LOCAL_FILE_SCHEMA,"");
+        mWXSDKInstanceA.render("WXSample", WXFileUtils.loadAsset(fileName, this), null, null, WXRenderStrategy.APPEND_ASYNC);
     }
 
     private void renderPageB() {
@@ -138,7 +140,8 @@ public class MultiInstanceActivity extends AppCompatActivity {
         //mWXSDKInstanceB.renderByUrl("WXSample", TEST_URL, options, null, WXRenderStrategy.APPEND_ONCE);
 
         //local assets
-        mWXSDKInstanceB.render("WXSample", WXFileUtils.loadAsset("postmsg.js", this), null, null, WXRenderStrategy.APPEND_ASYNC);
+        String fileName = TEST_URL.replace(Constants.LOCAL_FILE_SCHEMA,"");
+        mWXSDKInstanceB.render("WXSample", WXFileUtils.loadAsset(fileName, this), null, null, WXRenderStrategy.APPEND_ASYNC);
     }
 
 

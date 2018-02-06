@@ -42,7 +42,7 @@ public class MessageActivity extends BaseActivity {
 
     @Override
     protected void startRenderPage() {
-        renderLocalWeexPage("index.js");
+        renderLocalWeexPage("weex/index.js");
         //renderNetWeexPage(LOCAL_JS_URL);
     }
 

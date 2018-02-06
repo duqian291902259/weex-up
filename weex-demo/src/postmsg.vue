@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper" >
     <text class="title" @click="testToast">weex page 2,  {{test}}</text>
-    <button class="btn" @appear="ondisappear">测试appear</button>
+    <button class="btn" @appear="onappear">测试appear</button>
   </div>
 </template>
 
@@ -11,6 +11,20 @@ module.exports = {
   data: {
     test: "duqian2010@gmail.com"
   },
+  mounted() {
+    console.log("mounted", "mounted");
+    const bc = new BroadcastChannel("DuQian");
+    bc.onmessage = function(event) {
+      console.log(event.data); // send message from weex pageA
+      modal.toast({
+        message: "pageB received =" + event.data,
+        duration: 0.8
+      });
+      self.test = event.data;
+      bc.postMessage("I am DuQian.");
+    };
+  },
+  
   methods: {
     testToast: function() {
       modal.toast({
@@ -18,28 +32,13 @@ module.exports = {
         duration: 1
       });
     },
-    onappear(event) {
-      console.log("onappear:", event);
-      modal.toast({
-        message: "onappear",
-        duration: 0.8
-      });
-    },
-    ondisappear(event) {
-      console.log("ondisappear:", event);
-      modal.toast({
-        message: "ondisappear",
-        duration: 0.8
-      });
-    },
-    // created: function() {
-    //   const bc = new BroadcastChannel("DuQian");
-    //   bc.onmessage = function(event) {
-    //     console.log(event.data); // test BroadcastChannel!
-    //     self.test = event.data;
-    //     bc.postMessage("I am DuQian.");
-    //   };
-    // }
+    onappear() {
+    console.log("onappear:", event);
+    modal.toast({
+      message: "onappear",
+      duration: 0.8
+    });
+  },
   }
 };
 </script>
@@ -47,6 +46,7 @@ module.exports = {
 <style>
 .wrapper {
   align-items: center;
+  justify-content: center;
   padding-top: 0px;
   color: antiquewhite;
 }

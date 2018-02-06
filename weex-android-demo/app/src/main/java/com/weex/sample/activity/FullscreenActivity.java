@@ -25,7 +25,7 @@ public class FullscreenActivity extends BaseActivity {
 
     @Override
     protected void startRenderPage() {
-        renderLocalWeexPage("guide.js");
+        renderLocalWeexPage("weex/guide.js");
         //renderNetWeexPage("http://192.168.0.68:8081/dist/guide.js");
     }
 
