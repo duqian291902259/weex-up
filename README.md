@@ -11,7 +11,8 @@ weex开源以来，很多人关注，写了一些weex小案例，仅供参考。
 
 ## How to start
 This demo is based on weex.
-so,you should ensure that installed the environment of weex ,A framework for building Mobile cross-platform UI: [https://github.com/apache/incubator-weex](https://github.com/apache/incubator-weex)
+so,you must install the environment of weex .
+A framework for building Mobile cross-platform UI: [https://github.com/apache/incubator-weex](https://github.com/apache/incubator-weex)
 
 先安装好weex的各种脚手架工具。再按照以下说明运行本项目demo。
 
@@ -45,14 +46,12 @@ install all dependencies, weex-ui.
 cd /path/to/weex-demo 
 npm install
 npm i weex-ui -S
-
 ```
 install babel-preset-stage-0
 为了不打包所有的组件，你需要使用 babel-plugin-component 来只引入需要的组件打包。
 
 ``` 
 npm i babel-preset-stage-0 babel-plugin-component  -D
-
 ```
 
 ### npm start
@@ -74,10 +73,12 @@ Starts local server for develop weex page:
 Project is running at local server，like http://192.168.0.68:8081/
 
 preview your page:
-http://192.168.0.68:8081/web/index.html?page=/dist/index.js
+1， http://192.168.0.68:8081/web/index.html?page=/dist/web/index.js
 
 the dist file：
-http://192.168.0.68:8081/dist/index.js
+2， http://192.168.0.68:8081/dist/index.js
+
+以上ip改为你本地的ip地址，预览使用第一个地址。Native加载网络js可以用第二个地址。dist目录里面生成的xxx.js文件,可以放在assets目录中加载。
 
 ### weex2016
 weex2016,基于weex早期版本，依然适用，但建议移步最新的官方文档。以最新的语法和sdk为准。
