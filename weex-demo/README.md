@@ -6,11 +6,20 @@ weex demos by duqian2010@gmail.com
 
 ### npm install
 
-install dependencies
+install all dependencies, weex-ui.
+进入你本地weex-demo根目录，安装所有依赖包，本项目使用了weex-ui，也一并安装。
 
 ```
-cd /Users/duqian/Development/weex-demo 
+cd /path/to/weex-demo 
 npm install
+npm i weex-ui -S
+
+```
+install babel-preset-stage-0
+为了不打包所有的组件，你需要使用 babel-plugin-component 来只引入需要的组件打包。
+
+``` 
+npm i babel-preset-stage-0 babel-plugin-component  -D
 
 ```
 
