@@ -20,6 +20,10 @@
 
 <script>
 const dom = weex.requireModule("dom");
+const myMoudle = weex.requireModule("MyMoudle");
+const modal = weex.requireModule("modal");
+var navigator = weex.requireModule("navigator");
+
 module.exports = {
   data: {
     url: "http://g.tbcdn.cn/ali-wireless-h5/res/0.0.16/hello.js",
@@ -45,19 +49,22 @@ module.exports = {
     }, 20);
 
     var platform = this.$getConfig().env.platform.toLowerCase();
+    console.log("platform="+platform);
     if (platform === "web") {
-      this.url = "http://192.168.0.68:8081/web/index.html?page=/dist/index.js";
+      this.url = "http://192.168.0.68:8081/web/index.html?page=/dist/web/index.js";
     }
   },
   methods: {
     testClick: function() {
       console.log("testClick", "testClick");
-      goSite();
+       myMoudle.openPageByUrl(
+        "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js"
+      );
     },
     goSite() {
       console.log("goSite", "goSite");
       navigator.push({
-        url: "http://duqian.net.cn",
+        url: this.url,
         animated: "false"
       });
     }
@@ -73,13 +80,13 @@ module.exports = {
   justify-content: center;
 }
 .wrap_text {
-  font-size: 25;
-  margin-top: 20;
-  height: 50;
+  font-size: 45;
+  margin: 20px auto;
+  height: 50px;
 }
 .img {
-  width: 200;
-  height: 200;
+  width: 200px;
+  height: 200px;
   align-items: center;
   justify-content: center;
 }

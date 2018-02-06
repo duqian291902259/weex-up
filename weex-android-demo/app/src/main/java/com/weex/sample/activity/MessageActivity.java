@@ -53,7 +53,7 @@ public class MessageActivity extends BaseActivity {
 
     @OnClick(R.id.tv_tips)
     public void send() {
-        startRenderPage();
+        //startRenderPage();
         sendEvent2Js();
     }
 

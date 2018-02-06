@@ -189,7 +189,11 @@ public class MultiInstanceActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        destoryWeexInstance();
+        try {
+            destoryWeexInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     protected void destoryWeexInstance() {

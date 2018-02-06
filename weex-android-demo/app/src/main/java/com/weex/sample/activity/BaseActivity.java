@@ -152,8 +152,13 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mWXSDKInstance != null) {
-            mWXSDKInstance.onActivityDestroy();
+        try {
+            if (mWXSDKInstance != null) {
+                mWXSDKInstance.onActivityDestroy();
+            }
+        } catch (Exception e) {
+            //容易出错
+            e.printStackTrace();
         }
         if (getLayoutResId() > 0 && unbinder != null) {
             unbinder.unbind();

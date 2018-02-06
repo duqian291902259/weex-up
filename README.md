@@ -25,6 +25,7 @@ so,you should ensure that installed the environment of weex ,A framework for bui
 ##### 4，拓展原生module，图片加载，Toast，相互通信等。
 
 ##### 5，使用Vue重写以前的demo，测试新的weex-ui组件。
+![android-demos](https://github.com/duqian291902259/weex-demo-dusan/blob/master/weex-android-demo/release/weex-android-demos.jpeg)
 
 ## weex-demo
 使用最近的weex版本，用vue.js开发的一些demo，测试常用的一些场景。配合weex-android-demo使用。以下是前端开发常用命令：
