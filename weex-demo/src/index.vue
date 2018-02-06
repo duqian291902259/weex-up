@@ -7,7 +7,7 @@
     <button class="btn" @click="sendMsg">发消息，更新页面</button>
     <button class="btn" @click="jump">测试页面跳转</button>
 
-    <textarea class="inputText" value="测试输入法弹出" />
+    <textarea class="inputText" value="测试native输入法" />
 
     <!-- <a href="http://duqian.site" target="blank">
        <text>a链接</text>
@@ -114,7 +114,7 @@ export default {
 
 .inputText {
   width: 450px;
-  height: 100px;
+  height: 80px;
   text-align: left;
   background-color: beige;
   margin-top: 10px;

@@ -1,14 +1,14 @@
 <template>
-  <div class="wrap" >
-    <slider class="slider size" auto-play="isAutoPlay" interval="intervalValue">
+  <div class="wrap" @click="goNext">
+    <slider class="slider size" auto-play="isAutoPlay" interval="2000" @click="goNext">
       <div v-for="src in posters">
-        <image class="size" resize="contain" :src="src"  @click="go"></image>
+        <image class="size" resize="contain" :src="src"  @click="goNext" />
       </div>
       <indicator class="indicator"></indicator>
     </slider>
 
     <!-- 开始体验－Start -->
-    <text class='btn' @click="go">{{txt}}</text>
+    <button class='btn' @click="goNext">{{txt}}</button>
   </div>
 </template>
 
@@ -22,22 +22,22 @@ var navigator = weex.requireModule("navigator");
 export default {
   data() {
     return {
-      nextUrl:
-        "https://github.com/duqian291902259/weex-demo-dusan/blob/master/weex-demo/dist/home.js", //todo 修改
+      nextUrl:"http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js",
+        //"https://github.com/duqian291902259/weex-demo-dusan/blob/master/weex-demo/dist/home.js", //todo 修改
       txt: "Start-DusanWeex",
-      intervalValue: 1000,
+      intervalValue: 1500,
       isShowIndicators: "true",
       isAutoPlay: "true",
       posters: [
         "http://weex-project.io/guide/images/weex-example-yo.png",
-        "https://img3.doubanio.com/view/photo/l/public/p2465527446.webp",
+       // "https://img3.doubanio.com/view/photo/l/public/p2465527446.webp",
         "http://weex-project.io/guide/images/vue-rax.png",
         "https://duqian291902259.github.io/dusan/oair/bg1.png"
       ]
     };
   },
   methods: {
-    go() {
+    goNext() {
       console.log("hi,duqian");
       modal.toast({
         message: "next page",
@@ -45,10 +45,11 @@ export default {
       });
 
       myMoudle.openPageByUrl(this.nextUrl);
-      navigator.push({
-        url: this.nextUrl,
-        animated: "false"
-      });
+
+      // navigator.push({
+      //   url: this.nextUrl,
+      //   animated: "false"
+      // });
     },
   }
 };

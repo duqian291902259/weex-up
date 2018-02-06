@@ -85,7 +85,7 @@ const webConfig = {
   context: pathTo.join(__dirname, ''),
   entry: entry,
   output: {
-    path: pathTo.join(__dirname, 'dist'),
+    path: pathTo.join(__dirname, 'dist/web/'),
     filename: '[name].web.js'
   },
   /**

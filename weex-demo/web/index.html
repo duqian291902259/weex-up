@@ -38,7 +38,7 @@
       var match = location.search.match(reg)
       return match && match[1]
     };
-    var page = getUrlParam('page') || '/dist/index.js';
+    var page = getUrlParam('page') || '/dist/web/index.js';
     var bundle = document.createElement('script')
     // only for web
     bundle.src = page.replace(/\.js$/, '.web.js')

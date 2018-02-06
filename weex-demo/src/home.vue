@@ -8,18 +8,18 @@
         <image class="img" :src="img"  @click="testClick" />
 
         <div ref="box" class="box">
-      <text class="info">Width: {{size.width}}</text>
-      <text class="info">Height: {{size.height}}</text>
-      <text class="info">Top: {{size.top}}</text>
-      <text class="info">Bottom: {{size.bottom}}</text>
-      <text class="info">Left: {{size.left}}</text>
-      <text class="info">Right: {{size.right}}</text>
-    </div>
+          <text class="info">Width: {{size.width}}</text>
+          <text class="info">Height: {{size.height}}</text>
+          <text class="info">Top: {{size.top}}</text>
+          <text class="info">Bottom: {{size.bottom}}</text>
+          <text class="info">Left: {{size.left}}</text>
+          <text class="info">Right: {{size.right}}</text>
+        </div>
     </div>
 </template>
 
 <script>
- const dom = weex.requireModule('dom')
+const dom = weex.requireModule("dom");
 module.exports = {
   data: {
     url: "http://g.tbcdn.cn/ali-wireless-h5/res/0.0.16/hello.js",
@@ -56,12 +56,10 @@ module.exports = {
     },
     goSite() {
       console.log("goSite", "goSite");
-      navigator.push(
-        {
-          url:
-            "http://duqian.net.cn",
-            animated: "false"
-        });
+      navigator.push({
+        url: "http://duqian.net.cn",
+        animated: "false"
+      });
     }
   }
 };
@@ -90,13 +88,13 @@ module.exports = {
   align-items: center;
   justify-content: center;
 }
- .box {
-    width: 450px;
-    height: 300px;
-    background-color: #DDD;
-    border-width: 2px;
-    border-style: solid;
-    border-color: rgb(162, 217, 192);
-    background-color: rgba(162, 217, 192, 0.2);
-  }
+.box {
+  width: 450px;
+  height: 300px;
+  background-color: #ddd;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(162, 217, 192);
+  background-color: rgba(162, 217, 192, 0.2);
+}
 </style>

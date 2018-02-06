@@ -1,7 +1,7 @@
 <!-- 模版，特定语法，DSL写法参考weex提供的samples-->
 <template>
   <div class="wrap">
-    <div class="logo_wrap">
+    <div class="logo_wrap" @click="testClick" >
        <image class="img_logo" :src="splash_logo" @click="testClick" resize="contain"/>
        <image class="img_circle" :src="splash_circle" @click="rotate" resize="contain"/>
     </div>
@@ -19,8 +19,7 @@ module.exports = {
   data: function() {
     return {
       splash_circle: "//duqian291902259.github.io/dusan/oair/splash_circle.png",
-      splash_logo:
-        "//gw.alicdn.com/tps/i2/TB1DpsmMpXXXXabaXXX20ySQVXX-512-512.png_400x400.jpg",
+      splash_logo:"//gw.alicdn.com/tps/i2/TB1DpsmMpXXXXabaXXX20ySQVXX-512-512.png_400x400.jpg",
       transformOrigin: "center center",
       current_rotate: 0,
       current_scale: 1,
@@ -41,8 +40,8 @@ module.exports = {
         message: "Welcome to Weex...",
         duration: 0.3
       });
-      //this.rotate();
-      goSite();
+      this.rotate();
+      this.goSite();
     },
     goSite() {
       console.log("goSite", "goSite");
