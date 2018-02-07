@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper" @longpress="onlongpress">
     <text class="title" @click="onlongpress"  @appear="onappear('B')"
-        @disappear="ondisappear('B')">点击我，page 2,  {{test}}</text>
+        @disappear="ondisappear('B')">点我，page2,  {{test}}</text>
     <button class="btn" @click="testEvent">测试调用同一个modal</button>
   </div>
 </template>
@@ -17,6 +17,7 @@ globalEvent.addEventListener("eventB", function(e) {
     message: "js收到了eventB " + e.data,
     duration: 1
   });
+  //this.test = e.data;
 });
 
 module.exports = {
@@ -26,28 +27,26 @@ module.exports = {
   mounted() {
     console.log("mounted", "mounted");
     const bc = new BroadcastChannel("DuQian");
+    var that = this;
     bc.onmessage = function(event) {
+      //bc.onmessage = event => {
       console.log(event.data); // send message from weex pageA
+      that.test = "pageB received ="+event.data;
+      //this.test = "pageB received ="+event.data;
       modal.toast({
         message: "pageB received =" + event.data,
-        duration: 0.8
+        duration: 1
       });
-      self.test = event.data;
-      bc.postMessage("I am DuQian.");
     };
   },
   created() {
     console.log("created", "created");
+    this.test = "pageB created";
   },
   methods: {
-    testToast: function() {
-      modal.toast({
-        message: "test click",
-        duration: 1
-      });
-    },
     testEvent: function() {
       //myMoudle.sendMessage("pageB调用了native方法");
+      this.test = "pageB clicked";      
       myMoudle.printLog("myMoudle from B");
     },
     onlongpress (event) {
@@ -63,6 +62,7 @@ module.exports = {
       onappear (char) {
         console.log(char, 'appear')
         modal.toast({ message: char + ' appear' })
+        //this.test = "pageB change text";
       },
       ondisappear (char) {
         console.log(char, 'disappear')
@@ -78,6 +78,7 @@ module.exports = {
   justify-content: center;
   padding-top: 0px;
   color: antiquewhite;
+  background-color: antiquewhite;
 }
 .title {
   padding-top: 20px;

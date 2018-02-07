@@ -12,19 +12,19 @@
 </template>
 
 <script>
-  import { WxcButton, WxcPopup } from 'weex-ui';
-  module.exports = {
-    components: { WxcButton, WxcPopup },
-    data: () => ({
-      isShow: false
-    }),
-    methods: {
-      buttonClicked () {
-        this.isShow = true;
-      },
-      overlayClicked () {
-        this.isShow = false;
-      }
+import { WxcButton, WxcPopup } from "weex-ui";
+module.exports = {
+  components: { WxcButton, WxcPopup },
+  data: () => ({
+    isShow: false
+  }),
+  methods: {
+    buttonClicked() {
+      this.isShow = true;
+    },
+    overlayClicked() {
+      this.isShow = false;
     }
-  };
+  }
+};
 </script>

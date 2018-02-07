@@ -27,7 +27,7 @@ module.exports = {
     },
     testToast: function() {
       modal.toast({
-        message: "clicked,send message",
+        message: "clicked,A send message to B",
         duration: 1
       });
       this.target = "Nono";
@@ -54,6 +54,7 @@ module.exports = {
   text-align: center;
   color: blue;
   text-align: center;
+  margin:15px auto;
 }
 .btn {
   width: 350px;
@@ -62,5 +63,6 @@ module.exports = {
   text-align: center;
   font-size: 28px;
   padding: 10px;
+  margin:15px auto;
 }
 </style>

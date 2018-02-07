@@ -58,9 +58,9 @@ module.exports = {
       });
     }, 20);
 
-    var platform = weex.config.env.platform.toLowerCase();
+    var platform = WXEnvironment.platform;//weex.config.env.platform.toLowerCase();
     console.log("platform=" + platform);
-    if (platform === "web") {
+    if ("Web"===platform) {
       this.url =
         "http://192.168.0.68:8081/web/index.html?page=/dist/web/index.js";
     }

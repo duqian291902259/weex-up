@@ -34,7 +34,7 @@ public class MyMoudle extends WXModule {
 
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("data", "value-杜乾");
-        mWXSDKInstance.fireGlobalEventCallback(event, params);
+        mWXSDKInstance.fireGlobalEventCallback(event, params);//这个不起作用？
         if (null != callback) {
             Map<String, String> result = new HashMap<String, String>();
             result.put("result", "callback ok");
