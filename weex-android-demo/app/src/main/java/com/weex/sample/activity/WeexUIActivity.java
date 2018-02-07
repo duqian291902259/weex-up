@@ -1,6 +1,6 @@
-package com.weex.sample.activity;
+package site.duqian.weex.activity;
 
-import com.weex.sample.R;
+import site.duqian.weex.R;
 
 public class WeexUIActivity extends BaseActivity {
 

@@ -1,4 +1,4 @@
-package com.weex.sample.fragment;
+package site.duqian.weex.fragment;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -12,8 +12,8 @@ import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
 import com.taobao.weex.utils.WXFileUtils;
-import com.weex.sample.Constants;
-import com.weex.sample.R;
+import site.duqian.weex.Constants;
+import site.duqian.weex.R;
 
 import java.util.HashMap;
 

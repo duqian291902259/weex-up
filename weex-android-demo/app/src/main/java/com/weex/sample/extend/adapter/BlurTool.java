@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.weex.sample.extend.adapter;
+package site.duqian.weex.extend.adapter;
 
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;

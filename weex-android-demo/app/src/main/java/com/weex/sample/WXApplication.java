@@ -1,4 +1,4 @@
-package com.weex.sample;
+package site.duqian.weex;
 
 import android.app.Application;
 import android.util.Log;
@@ -6,10 +6,10 @@ import android.util.Log;
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
 import com.taobao.weex.common.WXException;
-import com.weex.sample.extend.adapter.ImageAdapter;
-import com.weex.sample.extend.compontent.RichText;
-import com.weex.sample.extend.module.MyMoudle;
-import com.weex.sample.extend.module.PhoneInfoModule;
+import site.duqian.weex.extend.adapter.ImageAdapter;
+import site.duqian.weex.extend.compontent.RichText;
+import site.duqian.weex.extend.module.MyMoudle;
+import site.duqian.weex.extend.module.PhoneInfoModule;
 
 /**
  * 注意要在Manifest中启用

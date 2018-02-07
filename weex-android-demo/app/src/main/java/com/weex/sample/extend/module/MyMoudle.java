@@ -1,4 +1,4 @@
-package com.weex.sample.extend.module;
+package site.duqian.weex.extend.module;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,7 @@ import android.widget.Toast;
 import com.taobao.weex.annotation.JSMethod;
 import com.taobao.weex.bridge.JSCallback;
 import com.taobao.weex.common.WXModule;
-import com.weex.sample.Constants;
+import site.duqian.weex.Constants;
 
 import java.util.HashMap;
 import java.util.Map;

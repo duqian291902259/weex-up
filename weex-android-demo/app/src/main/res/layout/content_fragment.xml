@@ -8,6 +8,6 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_fragment"
-        tools:context="com.weex.sample.fragment.WXFragmentActivity">
+        tools:context="site.duqian.weex.fragment.WXFragmentActivity">
 
 </FrameLayout>

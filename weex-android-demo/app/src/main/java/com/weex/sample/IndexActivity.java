@@ -1,17 +1,17 @@
-package com.weex.sample;
+package site.duqian.weex;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.weex.sample.activity.MessageActivity;
-import com.weex.sample.activity.FullscreenActivity;
-import com.weex.sample.activity.LocalActivity;
-import com.weex.sample.activity.MultiInstanceActivity;
-import com.weex.sample.activity.NetworkActivity;
-import com.weex.sample.activity.WeexUIActivity;
-import com.weex.sample.fragment.WXFragmentActivity;
+import site.duqian.weex.activity.MessageActivity;
+import site.duqian.weex.activity.FullscreenActivity;
+import site.duqian.weex.activity.LocalActivity;
+import site.duqian.weex.activity.MultiInstanceActivity;
+import site.duqian.weex.activity.NetworkActivity;
+import site.duqian.weex.activity.WeexUIActivity;
+import site.duqian.weex.fragment.WXFragmentActivity;
 
 public class IndexActivity extends AppCompatActivity implements View.OnClickListener {
 

@@ -1,4 +1,4 @@
-package com.weex.sample.extend.adapter;
+package site.duqian.weex.extend.adapter;
 
 import android.net.Uri;
 import android.text.TextUtils;

@@ -1,4 +1,4 @@
-package com.weex.sample.ui;
+package site.duqian.weex.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.weex.sample.R;
+import site.duqian.weex.R;
 
 import java.util.List;
 

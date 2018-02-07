@@ -1,4 +1,4 @@
-package com.weex.sample;
+package site.duqian.weex;
 
 /**
  * Description:常量

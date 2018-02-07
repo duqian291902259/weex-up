@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
-
     defaultConfig {
-        applicationId "com.weex.sample"
+        applicationId "site.duqian.weex"
         minSdkVersion 18
         targetSdkVersion 26
         versionCode 1
@@ -18,9 +18,10 @@ android {
         }
     }
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        release{
+            minifyEnabled true
+            proguardFiles 'proguard-rules.pro'
+            //signingConfig signingConfigs.release
         }
     }
 }
@@ -33,8 +34,7 @@ dependencies {
     compile 'com.android.support:design:26.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-
-    implementation "com.jakewharton:butterknife:8.8.1"
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
     compile 'com.squareup.picasso:picasso:2.5.2'
     //weex
@@ -42,5 +42,4 @@ dependencies {
     compile 'com.taobao.android:weex_sdk:0.17.0@aar'
     compile 'com.taobao.android:weex_inspector:0.13.4'
     debugCompile 'com.taobao.android:weex_analyzer:0.1.0.5'
-
 }

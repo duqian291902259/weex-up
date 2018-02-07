@@ -1,4 +1,4 @@
-package com.weex.sample.activity;
+package site.duqian.weex.activity;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.weex.sample.R;
+import site.duqian.weex.R;
 
 import java.util.HashMap;
 import java.util.Map;

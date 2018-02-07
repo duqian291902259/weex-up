@@ -1,4 +1,4 @@
-package com.weex.sample.activity;
+package site.duqian.weex.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.weex.sample.R;
-import com.weex.sample.fragment.WXFragmentActivity;
-import com.weex.sample.ui.LocalJsAdapter;
+import site.duqian.weex.R;
+import site.duqian.weex.fragment.WXFragmentActivity;
+import site.duqian.weex.ui.LocalJsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

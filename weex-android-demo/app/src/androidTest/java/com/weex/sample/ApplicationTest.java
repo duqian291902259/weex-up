@@ -1,4 +1,4 @@
-package com.weex.sample;
+package site.duqian.weex;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

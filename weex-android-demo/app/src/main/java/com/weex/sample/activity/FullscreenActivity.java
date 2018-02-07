@@ -1,8 +1,8 @@
-package com.weex.sample.activity;
+package site.duqian.weex.activity;
 
 import android.support.v7.app.ActionBar;
 
-import com.weex.sample.R;
+import site.duqian.weex.R;
 
 import butterknife.OnClick;
 

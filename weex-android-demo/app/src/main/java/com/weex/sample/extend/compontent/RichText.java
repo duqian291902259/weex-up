@@ -1,4 +1,4 @@
-package com.weex.sample.extend.compontent;
+package site.duqian.weex.extend.compontent;
 
 import android.content.Context;
 import android.graphics.Color;

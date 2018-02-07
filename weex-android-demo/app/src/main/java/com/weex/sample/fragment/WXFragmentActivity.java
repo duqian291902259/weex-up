@@ -1,4 +1,4 @@
-package com.weex.sample.fragment;
+package site.duqian.weex.fragment;
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 
-import com.weex.sample.Constants;
-import com.weex.sample.R;
+import site.duqian.weex.Constants;
+import site.duqian.weex.R;
 
 public class WXFragmentActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.weex.sample.extend.module;
+package site.duqian.weex.extend.module;
 
 import android.os.Build;
 
