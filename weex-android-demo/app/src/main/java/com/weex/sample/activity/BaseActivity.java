@@ -112,7 +112,9 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
         } else if (render_type == RENDER_TYPE_LOCAL) {
             mWXSDKInstance.render(pageName, WXFileUtils.loadAsset(jsName, this), null, null, WXRenderStrategy.APPEND_ASYNC);
         }
-        //mWXSDKInstance.render(pageName, jsUrl, null, null, WXRenderStrategy.APPEND_ASYNC);
+        /*flag:渲染策略。WXRenderStrategy.APPEND_ASYNC:异步策略先返回外层View，
+        其他View渲染完成后调用onRenderSuccess。
+        WXRenderStrategy.APPEND_ONCE 所有控件渲染完后后一次性返回。 */
     }
 
     @Override

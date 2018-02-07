@@ -21,7 +21,7 @@ public class WXFragmentActivity extends AppCompatActivity {
         String url = Constants.EXAMPLE_URL;
         String name = getIntent().getStringExtra("name");
         if (!TextUtils.isEmpty(name)) {
-            toolbar.setTitle(name);
+            //getActionBar().setTitle(name);
             setTitle(name);
             url = Constants.LOCAL_JS_DIR + name;
         }

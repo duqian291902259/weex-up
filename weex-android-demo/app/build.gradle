@@ -39,7 +39,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     //weex
     compile 'com.alibaba:fastjson:1.1.46'
-    compile 'com.taobao.android:weex_sdk:0.16.0@aar'
+    compile 'com.taobao.android:weex_sdk:0.17.0@aar'
     compile 'com.taobao.android:weex_inspector:0.13.4'
     debugCompile 'com.taobao.android:weex_analyzer:0.1.0.5'
 

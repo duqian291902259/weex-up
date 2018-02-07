@@ -149,7 +149,6 @@ public class MultiInstanceActivity extends AppCompatActivity {
         String fileName = TEST_URL.replace(Constants.LOCAL_FILE_SCHEMA,"");
         mWXSDKInstanceB.render("WXSampleB", WXFileUtils.loadAsset(fileName, this), null, null, WXRenderStrategy.APPEND_ASYNC);
         Log.d("dq","mWXSDKInstanceB id="+mWXSDKInstanceB.getInstanceId()+",url="+mWXSDKInstanceB.getBundleUrl());
-
     }
 
 

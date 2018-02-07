@@ -60,13 +60,8 @@ export default {
     sendMsg() {
       console.log("sendMsg");
 
-      myMoudle.sendMessage("weex发送指令给native");
+      myMoudle.sendMessage("weex发送指令给native,打开页面");
       myMoudle.openPageByUrl(this.url);
-      
-      modal.toast({
-        message: "sendMsg 2 native",
-        duration: 1
-      });
     }
   }
 };

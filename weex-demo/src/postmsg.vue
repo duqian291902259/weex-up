@@ -1,6 +1,7 @@
 <template>
-  <div class="wrapper" >
-    <text class="title" @click="testToast">weex page 2,  {{test}}</text>
+  <div class="wrapper" @longpress="onlongpress">
+    <text class="title" @click="onlongpress"  @appear="onappear('B')"
+        @disappear="ondisappear('B')">点击我，page 2,  {{test}}</text>
     <button class="btn" @click="testEvent">测试调用同一个modal</button>
   </div>
 </template>
@@ -8,6 +9,16 @@
 <script>
 const myMoudle = weex.requireModule("MyMoudle");
 var modal = weex.requireModule("modal");
+
+var globalEvent = weex.requireModule("globalEvent");
+globalEvent.addEventListener("eventB", function(e) {
+  console.log("get eventB"+e.data);
+  modal.toast({
+    message: "js收到了eventB " + e.data,
+    duration: 1
+  });
+});
+
 module.exports = {
   data: {
     test: "duqian2010@gmail.com"
@@ -25,12 +36,9 @@ module.exports = {
       bc.postMessage("I am DuQian.");
     };
   },
-  // created() {//在native执行报错？
-  //   modal.toast({
-  //     message: "created",
-  //     duration: 0.8
-  //   });
-  // },
+  created() {
+    console.log("created", "created");
+  },
   methods: {
     testToast: function() {
       modal.toast({
@@ -41,7 +49,25 @@ module.exports = {
     testEvent: function() {
       //myMoudle.sendMessage("pageB调用了native方法");
       myMoudle.printLog("myMoudle from B");
-    }
+    },
+    onlongpress (event) {
+        console.log('onlongpress:', event)
+        myMoudle.fireNativeGlobalEvent("eventB",function (event) {
+          console.log("received From Natvie "+event.data)
+           modal.toast({
+             message: 'Get Native result=  '+event.result,
+             duration: 2
+           });
+        });
+      },
+      onappear (char) {
+        console.log(char, 'appear')
+        modal.toast({ message: char + ' appear' })
+      },
+      ondisappear (char) {
+        console.log(char, 'disappear')
+        modal.toast({ message: char + ' disappear' })
+      }
   }
 };
 </script>
