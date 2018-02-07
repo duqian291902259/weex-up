@@ -1,7 +1,7 @@
 # weex-demo-dusan
 ![android-demos](https://github.com/duqian291902259/weex-demo-dusan/blob/master/weex-android-demo/release/weex-android-demos.jpeg)
 
-### 更新：2018年新增了android工程，weex demos。
+### 不断更新：新增了android工程，weex demos。
 weex开源以来，很多人关注，写了一些weex小案例，仅供参考。可以学习weex原理和应用，跨平台应用的特定语法，前端框架，webpack，vue.js，android集成weex，以及weex调试等。
 
 项目github地址，直接看效果:star，fork一下吧！
