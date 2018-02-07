@@ -62,6 +62,7 @@ export default {
 
       myMoudle.sendMessage("weex发送指令给native");
       myMoudle.openPageByUrl(this.url);
+      
       modal.toast({
         message: "sendMsg 2 native",
         duration: 1

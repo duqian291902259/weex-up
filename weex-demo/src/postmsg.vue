@@ -1,11 +1,12 @@
 <template>
   <div class="wrapper" >
     <text class="title" @click="testToast">weex page 2,  {{test}}</text>
-    <button class="btn" @appear="onappear">测试appear</button>
+    <button class="btn" @click="testEvent">测试调用同一个modal</button>
   </div>
 </template>
 
 <script>
+const myMoudle = weex.requireModule("MyMoudle");
 var modal = weex.requireModule("modal");
 module.exports = {
   data: {
@@ -24,7 +25,12 @@ module.exports = {
       bc.postMessage("I am DuQian.");
     };
   },
-  
+  // created() {//在native执行报错？
+  //   modal.toast({
+  //     message: "created",
+  //     duration: 0.8
+  //   });
+  // },
   methods: {
     testToast: function() {
       modal.toast({
@@ -32,13 +38,10 @@ module.exports = {
         duration: 1
       });
     },
-    onappear() {
-    console.log("onappear:", event);
-    modal.toast({
-      message: "onappear",
-      duration: 0.8
-    });
-  },
+    testEvent: function() {
+      //myMoudle.sendMessage("pageB调用了native方法");
+      myMoudle.printLog("myMoudle from B");
+    }
   }
 };
 </script>

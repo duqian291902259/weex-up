@@ -16,6 +16,9 @@ module.exports = {
       target: "Weex"
     };
   },
+  mounted() {
+      console.log("mounted", "mounted");
+    },
   methods: {
     sendMessage() {
       console.log("sendMessage", "sendMessage");
@@ -31,12 +34,8 @@ module.exports = {
       this.sendMessage();
     },
     testEvent: function() {
-      myMoudle.printLog("myMoudle duqian");
+      myMoudle.printLog("myMoudle from A");
     },
-
-    mounted() {
-      console.log("mounted", "mounted");
-    }
   }
 };
 </script>

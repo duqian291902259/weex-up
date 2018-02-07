@@ -66,7 +66,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            Log.d("dq", "received " + action);
+            Log.d("dq", "received broadcast" + action);
             if (Constants.BC_ACTION_RENDER_NET_JS.equals(action)) {
                 String url = intent.getStringExtra("url");
                 if (!TextUtils.isEmpty(url)) {
@@ -106,6 +106,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
         mWXSDKInstance.registerRenderListener(this);
         Map<String, Object> options = new HashMap<>();
         options.put(WXSDKInstance.BUNDLE_URL, jsUrl);
+        pageName = jsName;
         if (render_type == RENDER_TYPE_NETWORK) {
             mWXSDKInstance.renderByUrl(pageName, jsUrl, options, null, WXRenderStrategy.APPEND_ONCE);
         } else if (render_type == RENDER_TYPE_LOCAL) {

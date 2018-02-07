@@ -2,6 +2,7 @@ package com.weex.sample.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -28,9 +29,9 @@ public class MultiInstanceActivity extends AppCompatActivity {
     @BindView(R.id.containerB)
     FrameLayout containerB;
     //server端js测试
-    //private static String BASE_HOST ="http://192.168.0.68:8081";
-    //private static String LOCAL_JS_URL = BASE_HOST+"/dist/web/hello.js";
-    //private static String TEST_URL = BASE_HOST+"/dist/web/postmsg.js";
+    private static String BASE_HOST ="http://192.168.0.68:8081";
+    //private static String LOCAL_JS_URL = BASE_HOST+"/dist/hello.js";
+    //private static String TEST_URL = BASE_HOST+"/dist/postmsg.js";
     //本地js测试
     private static String LOCAL_JS_URL = "file://weex/hello.js";
     private static String TEST_URL = "file://weex/postmsg.js";
@@ -65,7 +66,9 @@ public class MultiInstanceActivity extends AppCompatActivity {
     }
 
     private void renderPageA() {
-        mWXSDKInstanceA = new WXSDKInstance(this);
+        if (mWXSDKInstanceA==null) {
+            mWXSDKInstanceA = new WXSDKInstance(this);
+        }
         mWXSDKInstanceA.registerRenderListener(new IWXRenderListener() {
             @Override
             public void onViewCreated(WXSDKInstance instance, View view) {
@@ -94,15 +97,18 @@ public class MultiInstanceActivity extends AppCompatActivity {
         Map<String, Object> options = new HashMap<>();
         options.put(WXSDKInstance.BUNDLE_URL, LOCAL_JS_URL);
         //测试本地网络js
-        //mWXSDKInstanceA.renderByUrl("WXSample", LOCAL_JS_URL, options, null, WXRenderStrategy.APPEND_ONCE);
+        //mWXSDKInstanceA.renderByUrl("WXSampleA", LOCAL_JS_URL, options, null, WXRenderStrategy.APPEND_ONCE);
 
         //assets
         String fileName = LOCAL_JS_URL.replace(Constants.LOCAL_FILE_SCHEMA,"");
-        mWXSDKInstanceA.render("WXSample", WXFileUtils.loadAsset(fileName, this), null, null, WXRenderStrategy.APPEND_ASYNC);
+        mWXSDKInstanceA.render("WXSampleA", WXFileUtils.loadAsset(fileName, this), null, null, WXRenderStrategy.APPEND_ASYNC);
+        Log.d("dq","mWXSDKInstanceA id="+mWXSDKInstanceA.getInstanceId()+",url="+mWXSDKInstanceA.getBundleUrl());
     }
 
     private void renderPageB() {
-        mWXSDKInstanceB = new WXSDKInstance(this);
+        if (mWXSDKInstanceB==null) {
+            mWXSDKInstanceB = new WXSDKInstance(this);
+        }
         mWXSDKInstanceB.registerRenderListener(new IWXRenderListener() {
             @Override
             public void onViewCreated(WXSDKInstance instance, View view) {
@@ -137,11 +143,13 @@ public class MultiInstanceActivity extends AppCompatActivity {
         options.put(WXSDKInstance.BUNDLE_URL, TEST_URL);
 
         //测试本地网络js
-        //mWXSDKInstanceB.renderByUrl("WXSample", TEST_URL, options, null, WXRenderStrategy.APPEND_ONCE);
+        //mWXSDKInstanceB.renderByUrl("WXSampleB", TEST_URL, options, null, WXRenderStrategy.APPEND_ONCE);
 
         //local assets
         String fileName = TEST_URL.replace(Constants.LOCAL_FILE_SCHEMA,"");
-        mWXSDKInstanceB.render("WXSample", WXFileUtils.loadAsset(fileName, this), null, null, WXRenderStrategy.APPEND_ASYNC);
+        mWXSDKInstanceB.render("WXSampleB", WXFileUtils.loadAsset(fileName, this), null, null, WXRenderStrategy.APPEND_ASYNC);
+        Log.d("dq","mWXSDKInstanceB id="+mWXSDKInstanceB.getInstanceId()+",url="+mWXSDKInstanceB.getBundleUrl());
+
     }
 
 
@@ -203,7 +211,7 @@ public class MultiInstanceActivity extends AppCompatActivity {
         if (mWXSDKInstanceA != null) {
             mWXSDKInstanceA.onActivityDestroy();
             mWXSDKInstanceA.destroy();
-            //mWXSDKInstanceA = null;
+            mWXSDKInstanceA = null;
         }
         destoryInstanceB();
     }
@@ -212,7 +220,7 @@ public class MultiInstanceActivity extends AppCompatActivity {
         if (mWXSDKInstanceB != null) {
             mWXSDKInstanceB.onActivityDestroy();
             mWXSDKInstanceB.destroy();
-            //mWXSDKInstanceB = null;
+            mWXSDKInstanceB = null;
         }
     }
 }

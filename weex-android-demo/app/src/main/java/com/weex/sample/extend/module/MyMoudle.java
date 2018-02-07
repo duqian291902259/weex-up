@@ -20,8 +20,8 @@ public class MyMoudle extends WXModule {
     //run ui thread
     @JSMethod(uiThread = true)
     public void sendMessage(String msg) {
-        Toast.makeText(mWXSDKInstance.getContext(), "native recevied " + msg, Toast.LENGTH_SHORT).show();
-        Log.d("dq", "msg=" + msg);
+        test(msg);
+        Log.d("dq", "getMessage msg=" + msg);
     }
 
     @JSMethod(uiThread = true)
@@ -32,15 +32,19 @@ public class MyMoudle extends WXModule {
         intent.setAction(Constants.BC_ACTION_RENDER_NET_JS);
         intent.putExtra("url", url);
         context.sendBroadcast(intent);
-        //Toast.makeText(mWXSDKInstance.getContext(), "native send broadcast " + url, Toast.LENGTH_SHORT).show();
         mWXSDKInstance.render(url);
     }
 
     //run ui thread
     @JSMethod(uiThread = true)
     public void printLog(String msg) {
-        Toast.makeText(mWXSDKInstance.getContext(), msg, Toast.LENGTH_SHORT).show();
-        Log.d("dq", "msg=" + msg);
+        test(msg);
+    }
+
+    private void test(String msg) {
+        String instanceId = mWXSDKInstance.getInstanceId();
+        Toast.makeText(mWXSDKInstance.getContext(), msg + ",id=" + instanceId, Toast.LENGTH_SHORT).show();
+        Log.d("dq", "printLog msg=" + msg + ",id=" + instanceId + ",url=" + mWXSDKInstance.getBundleUrl());
     }
 
     //run JS thread
