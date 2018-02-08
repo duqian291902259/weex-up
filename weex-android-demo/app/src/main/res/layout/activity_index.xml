@@ -5,7 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <Button
+        android:id="@+id/btn_local"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="本地Assets加载Weex"/>
 
+    <Button
+        android:id="@+id/btn_network"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="网络加载Weex"/>
     <Button
         android:id="@+id/btn_weex_ui"
         android:layout_width="match_parent"
@@ -35,23 +47,9 @@
         android:text="实例Demo"/>
 
     <Button
-        android:id="@+id/btn_local"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="从本地加载JavaScript"/>
-
-    <Button
-        android:id="@+id/btn_network"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="从网络加载JavaScript"/>
-
-    <Button
         android:id="@+id/btn_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="使用Fragment加载Weex"/>
+        android:text="Fragment加载Weex"/>
 </LinearLayout>
