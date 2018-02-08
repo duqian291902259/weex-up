@@ -4,52 +4,61 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
     <Button
         android:id="@+id/btn_local"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="本地Assets加载Weex"/>
+        android:text="本地Assets加载Weex"
+        android:layout_margin="5dp"/>
 
     <Button
         android:id="@+id/btn_network"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="网络加载Weex"/>
+        android:text="网络加载Weex"
+        android:layout_margin="5dp"/>
     <Button
         android:id="@+id/btn_weex_ui"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Weex UI 组件"/>
+        android:text="Weex UI 组件"
+        android:layout_margin="5dp"/>
 
     <Button
         android:id="@+id/btn_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="跨页面通信"/>
+        android:text="跨页面通信"
+        android:layout_margin="5dp"/>
 
     <Button
         android:id="@+id/btn_multi_instance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="多个WXSDKInstance渲染"/>
+        android:text="多个WXSDKInstance渲染"
+        android:layout_margin="5dp"/>
 
     <Button
         android:id="@+id/btn_dusan_demo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="实例Demo"/>
+        android:text="实例Demos"
+        android:layout_margin="5dp"/>
 
     <Button
         android:id="@+id/btn_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Fragment加载Weex"/>
+        android:text="Fragment加载Weex"
+        android:layout_margin="5dp"/>
 </LinearLayout>
