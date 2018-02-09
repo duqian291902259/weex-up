@@ -49,10 +49,9 @@ A framework for building Mobile cross-platform UI: [https://github.com/apache/in
 
 ##### 5，storage本地存储，测试新的weex-ui组件。
 
-![weex-android-send-event](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-send-event.png)
 ![splash](https://github.com/duqian291902259/weex-demo-dusan/blob/master/screenshot/weex-demo-dusan.gif)
 ![weex-android-local-js](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-local-js.png)
-![weex-demo-load-from-net](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-demo-load-from-net.png)
+
 
 以下是前端开发常用命令：
 
