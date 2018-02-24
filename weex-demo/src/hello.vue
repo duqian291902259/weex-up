@@ -2,7 +2,7 @@
   <div class="wrapper">
     <button class="btn" @click="testToast">Hello weex</button>
     <text class="title"  @click="testToast">Hello DuQian, {{target}} Up!</text>
-    <button class="btn" @click="testEvent">测试js和Native交互</button>
+    <button class="btn" @click="testEvent">测试weex和Native交互</button>
   </div>
 </template>
 
@@ -18,6 +18,7 @@ module.exports = {
   },
   mounted() {
       console.log("mounted", "mounted");
+      this.testSupports();
     },
   methods: {
     sendMessage() {
@@ -27,14 +28,29 @@ module.exports = {
     },
     testToast: function() {
       modal.toast({
-        message: "clicked,A send message to B",
+        message: "clicked,A send message to B ",
         duration: 1
       });
       this.target = "Nono";
       this.sendMessage();
+      this.testSupports();
     },
     testEvent: function() {
       myMoudle.printLog("myMoudle from A");
+    },
+
+//测试weex是否支持某些模块和功能
+    testSupports: function() {
+        var net = weex.supports('@module/stream')  // true
+        var my = weex.supports('@module/MyMoudle')  // true
+        var printLog = weex.supports('@module/MyMoudle.printLog')  // true
+        var duqian = weex.supports('@module/MyMoudle.duqian')  // false
+        var mytest = weex.supports('@module/duqian')  // false
+        console.log("net", net);
+        modal.toast({
+          message: duqian+",是否有MyMoudle="+my+",printLog="+printLog+",是否支持stream= "+net+",mytest="+mytest,
+          duration: 10
+        });
     },
   }
 };

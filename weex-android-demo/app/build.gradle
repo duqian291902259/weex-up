@@ -21,13 +21,11 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-        /**
-         * 必须加，否则64位手机无法加载so文件
-         */
-        ndk {
+
+        /*ndk {
             abiFilters "x86"
             abiFilters "armeabi"
-        }
+        }*/
     }
     buildTypes {
         release {

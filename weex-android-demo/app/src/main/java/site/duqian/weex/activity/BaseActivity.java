@@ -43,7 +43,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IWXRende
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_network);
         mContext = this;
         int layoutId = getLayoutResId();
         //初始化butterknife
