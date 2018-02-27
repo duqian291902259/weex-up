@@ -9,11 +9,15 @@ import android.widget.Toast;
 
 import com.taobao.weex.WXSDKInstance;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
 import site.duqian.weex.Constants;
 import site.duqian.weex.R;
+import site.duqian.weex.extend.module.User;
 
 public class NetworkActivity extends BaseActivity {
 
@@ -75,7 +79,7 @@ public class NetworkActivity extends BaseActivity {
 
     @OnClick(R.id.tv_tips)
     public void clear() {
-        etJsUrl.setText("http://192.168.0.68:8081/dist/hello.js");
+        etJsUrl.setText("http://192.168.0.112:8081/dist/postmsg.js");
     }
 
     @OnLongClick(R.id.tv_tips)
@@ -84,4 +88,15 @@ public class NetworkActivity extends BaseActivity {
         return true;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (null!=mWXSDKInstance) {
+            User user = new User("duqian2010@gmail.com", 28);
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("data", "on resume");
+            params.put("user", user);
+            mWXSDKInstance.fireGlobalEventCallback("eventB", params);
+        }
+    }
 }

@@ -8,10 +8,11 @@ import android.widget.Toast;
 import com.taobao.weex.annotation.JSMethod;
 import com.taobao.weex.bridge.JSCallback;
 import com.taobao.weex.common.WXModule;
-import site.duqian.weex.Constants;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import site.duqian.weex.Constants;
 
 /**
  * Description:
@@ -30,14 +31,15 @@ public class MyMoudle extends WXModule {
 
     @JSMethod(uiThread = true)
     public void fireNativeGlobalEvent(String event, JSCallback callback) {
-        Toast.makeText(mWXSDKInstance.getContext(), "Native called!"+event + ",id=" + mWXSDKInstance.getInstanceId(), Toast.LENGTH_SHORT).show();
-
+        //Toast.makeText(mWXSDKInstance.getContext(), "Native called!" + event + ",id=" + mWXSDKInstance.getInstanceId(), Toast.LENGTH_SHORT).show();
+        User user = new User("duqian", 27);
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("data", "value-杜乾");
-        mWXSDKInstance.fireGlobalEventCallback(event, params);//这个不起作用？
+        params.put("data", user);
+        mWXSDKInstance.fireGlobalEventCallback("eventB", params);//这个不起作用？
         if (null != callback) {
-            Map<String, String> result = new HashMap<String, String>();
+            Map<String, Object> result = new HashMap<String, Object>();
             result.put("result", "callback ok");
+            result.put("user", user);
             callback.invoke(result);
         }
     }

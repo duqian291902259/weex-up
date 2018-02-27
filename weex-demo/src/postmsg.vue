@@ -14,10 +14,11 @@ var globalEvent = weex.requireModule("globalEvent");
 globalEvent.addEventListener("eventB", function(e) {
   console.log("get eventB"+e.data);
   modal.toast({
-    message: "js收到了eventB " + e.data,
+    message: "globalEvent收到了eventB " + e.data,
     duration: 1
   });
   //this.test = e.data;
+  //+",user="+JSON.stringify(event.user) +event.user.name+","+event.user.age
 });
 
 module.exports = {
@@ -34,7 +35,7 @@ module.exports = {
       that.test = "pageB received ="+event.data;
       //this.test = "pageB received ="+event.data;
       modal.toast({
-        message: "pageB received =" + event.data,
+        message: "onmessage received =" + event.data+",user="+event.user.name+","+event.user.age,
         duration: 1
       });
     };
@@ -52,9 +53,9 @@ module.exports = {
     onlongpress (event) {
         console.log('onlongpress:', event)
         myMoudle.fireNativeGlobalEvent("eventB",function (event) {
-          console.log("received From Natvie "+event.data)
+           console.log("received From Natvie "+event.data)
            modal.toast({
-             message: 'Get Native result=  '+event.result,
+             message: 'native callback.invoke = '+event.result +",user="+event.user.name+","+event.user.age,
              duration: 2
            });
         });

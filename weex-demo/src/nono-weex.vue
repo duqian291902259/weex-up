@@ -1,14 +1,14 @@
 <template>
   <div class="wrapper">
-    <button class="btn" @click="testToast">Hello weex</button>
-    <text class="title"  @click="testToast">Hello DuQian, {{target}} Up!</text>
-    <button class="btn" @click="testEvent">测试nono api</button>
+    <text class="title"  @click="closeDialog">Hello DuQian, {{target}} Up!</text>
+    <button class="btn" @click="openDialog">测试nono api</button>
   </div>
 </template>
 
 <script>
 const modal = weex.requireModule("modal");
 const myMoudle = weex.requireModule("MyMoudle");
+const weexDialog = weex.requireModule("WeexDialogModule");
 module.exports = {
   data() {
     return {
@@ -16,27 +16,24 @@ module.exports = {
       target: "Weex"
     };
   },
-  mounted() {
-      console.log("mounted", "mounted");
-      this.testSupports();
-    },
   methods: {
-    sendMessage() {
-      console.log("sendMessage", "sendMessage");
-      const bc = new BroadcastChannel("DuQian");
-      bc.postMessage('message from weex pageA')
-    },
     testToast: function() {
       modal.toast({
-        message: "clicked,A send message to B ",
+        message: "clicked,打开新窗口 ",
         duration: 1
       });
       this.target = "Nono";
       this.sendMessage();
       this.testSupports();
+
+      this.testEvent();
     },
-    testEvent: function() {
-      myMoudle.printLog("myMoudle from A");
+    openDialog: function() {
+       weexDialog.newWeexDialog("{\"data\":\"\",\"height\":0.3,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/home.js\",\"width\":0.4,\"x\":0.1,\"y\":0.5}");
+    },
+
+    closeDialog: function() {
+       weexDialog.close("{\"data\":\"\",\"height\":0.3,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/home.js\",\"width\":0.4,\"x\":0.1,\"y\":0.5}");
     },
 
     //测试weex是否支持某些模块和功能

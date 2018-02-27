@@ -14,9 +14,11 @@ import com.taobao.weex.common.WXRenderStrategy;
 import com.taobao.weex.utils.WXFileUtils;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import site.duqian.weex.Constants;
 import site.duqian.weex.R;
+import site.duqian.weex.extend.module.User;
 
 
 public class WeexFragment extends Fragment implements IWXRenderListener {
@@ -85,6 +87,12 @@ public class WeexFragment extends Fragment implements IWXRenderListener {
     public void onResume() {
         super.onResume();
         if (mWXSDKInstance != null) {
+            User user = new User("duqian2010@gmail.com", 28);
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("data", "on resume");
+            params.put("user", user);
+            mWXSDKInstance.fireGlobalEventCallback("eventB", params);
+
             mWXSDKInstance.onActivityResume();
         }
     }
