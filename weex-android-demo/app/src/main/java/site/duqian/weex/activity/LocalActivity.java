@@ -13,14 +13,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import site.duqian.weex.R;
-import site.duqian.weex.fragment.WXFragmentActivity;
-import site.duqian.weex.ui.LocalJsAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import site.duqian.weex.R;
+import site.duqian.weex.common.LocalJsAdapter;
+import site.duqian.weex.fragment.WXFragmentActivity;
 
 public class LocalActivity extends BaseActivity {
 

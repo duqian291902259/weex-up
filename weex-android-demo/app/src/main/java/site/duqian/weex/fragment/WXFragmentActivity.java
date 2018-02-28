@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 
-import site.duqian.weex.Constants;
+import site.duqian.weex.weex.Constants;
 import site.duqian.weex.R;
 
 public class WXFragmentActivity extends AppCompatActivity {

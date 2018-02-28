@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import site.duqian.weex.activity.MessageActivity;
-import site.duqian.weex.activity.FullscreenActivity;
 import site.duqian.weex.activity.LocalActivity;
+import site.duqian.weex.activity.MessageActivity;
 import site.duqian.weex.activity.MultiInstanceActivity;
 import site.duqian.weex.activity.NetworkActivity;
+import site.duqian.weex.activity.WeexDialogActivity;
 import site.duqian.weex.activity.WeexUIActivity;
 import site.duqian.weex.fragment.WXFragmentActivity;
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(MessageActivity.class);
                 break;
             case R.id.btn_dusan_demo:
-                startActivity(FullscreenActivity.class);
+                startActivity(WeexDialogActivity.class);
                 break;
             case R.id.btn_multi_instance:
                 startActivity(MultiInstanceActivity.class);

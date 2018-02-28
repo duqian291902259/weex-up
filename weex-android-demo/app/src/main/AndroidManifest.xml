@@ -38,13 +38,17 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".activity.FullscreenActivity"
+            android:name=".activity.GuideActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
             android:theme="@style/FullscreenTheme">
         </activity>
         <activity
             android:name=".activity.WeexUIActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+        <activity
+            android:name=".activity.WeexDialogActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
     </application>

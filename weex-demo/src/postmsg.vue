@@ -7,7 +7,7 @@
 </template>
 
 <script>
-const myMoudle = weex.requireModule("MyMoudle");
+const myMoudle = weex.requireModule("MyModule");
 var modal = weex.requireModule("modal");
 
 var globalEvent = weex.requireModule("globalEvent");

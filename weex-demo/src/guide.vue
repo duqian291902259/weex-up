@@ -15,7 +15,7 @@
 
 <script>
 const modal = weex.requireModule("modal");
-const myMoudle = weex.requireModule("MyMoudle");
+const myMoudle = weex.requireModule("MyModule");
 var event = weex.requireModule("event");
 var navigator = weex.requireModule("navigator");
 

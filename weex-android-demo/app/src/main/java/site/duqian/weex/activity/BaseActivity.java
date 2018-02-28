@@ -26,7 +26,7 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import site.duqian.weex.Constants;
+import site.duqian.weex.weex.Constants;
 import site.duqian.weex.R;
 
 public abstract class BaseActivity extends AppCompatActivity implements IWXRenderListener {

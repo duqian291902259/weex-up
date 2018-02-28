@@ -4,10 +4,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_activity_fragment">weex demos</string>
     <string name="title_activity_communication">weex页面通信</string>
-
     <string name="action_settings">Settings</string>
-
     <string name="title_activity_fullscreen">Splash-Guide</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="btn_txt_render_again">重新渲染Weex页面</string>
+    <string name="weex_dialog_tips">本实例需要连接本地server访问目标js文件，根据实际情况配置好服务端js，测试weex窗口的创建，关闭，显示与隐藏等功能</string>
+
 </resources>

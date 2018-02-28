@@ -4,7 +4,7 @@
     <button class="btn" @click="getOptions">Hello, Nono Weex</button>
     <text class="title"  @click="testToast">result: {{ch_1}}, {{target}} </text>
     <button class="btn" @click="testEvent">Native方法调用</button>
-    <button class="btn" @click="showDialog">显示weex窗口</button>
+    <!-- <button class="btn" @click="showDialog">显示weex窗口</button> -->
     <button class="btn" @click="hideDialog">隐藏weex窗口</button>
     <button class="btn" @click="closeDialog">关闭weex窗口</button>
   </div>
@@ -56,6 +56,10 @@ module.exports = {
        logModule.log("weex-dq","hideDialog");
        weexDialog.hide();
     },
+    resizeDialog: function() {
+       logModule.log("weex-dq","resizeDialog");
+       weexDialog.resize("{\"data\":\"\",\"height\":0.2,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/nono-weex.js\",\"width\":0.5,\"x\":0.1,\"y\":0.1}");
+    },
     testEvent: function() {
       logModule.log("weex-dq","logModule dq test log");
       var that = this;
@@ -71,7 +75,18 @@ module.exports = {
           
         });
 
-        roomModule.getLoginUserInfo(function (event) { 
+        this.resizeDialog();
+
+        var supports = weex.supports('@module/RoomModule');
+        logModule.log("weex-dq","native 不支持 getLoginUserInfo "+supports);
+        if(supports==true){
+            getLoginUserInfo();
+        }
+        
+    },
+    getLoginUserInfo: function() {
+       logModule.log("weex-dq","getLoginUserInfo");
+       roomModule.getLoginUserInfo(function (event) { 
           var object = JSON.stringify(event);
           logModule.log("weex-dq","callback:"+object);
           var obj =JSON.parse(event);
@@ -80,12 +95,8 @@ module.exports = {
              message: 'native '+that.target,
              duration: 3
            });
-          
         });
-        
-        weexDialog.resize("{\"data\":\"\",\"height\":0.2,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/nono-weex.js\",\"width\":0.5,\"x\":0.1,\"y\":0.1}");
     },
-
     //测试weex是否支持某些模块和功能
     testSupports: function() {
         var net = weex.supports('@module/stream')  // true

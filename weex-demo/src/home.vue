@@ -29,7 +29,7 @@
 
 <script>
 const dom = weex.requireModule("dom");
-const myMoudle = weex.requireModule("MyMoudle");
+const myMoudle = weex.requireModule("MyModule");
 const modal = weex.requireModule("modal");
 var navigator = weex.requireModule("navigator");
 

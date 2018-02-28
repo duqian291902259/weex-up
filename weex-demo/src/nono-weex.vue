@@ -7,7 +7,7 @@
 
 <script>
 const modal = weex.requireModule("modal");
-const myMoudle = weex.requireModule("MyMoudle");
+const myMoudle = weex.requireModule("MyModule");
 const weexDialog = weex.requireModule("WeexDialogModule");
 module.exports = {
   data() {
@@ -29,7 +29,7 @@ module.exports = {
       this.testEvent();
     },
     openDialog: function() {
-       weexDialog.newWeexDialog("{\"data\":\"\",\"height\":0.3,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/home.js\",\"width\":0.4,\"x\":0.1,\"y\":0.5}");
+       weexDialog.newWeexDialog("{\"data\":\"\",\"height\":0.3,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/index.js\",\"width\":0.4,\"x\":0.1,\"y\":0.5}");
     },
 
     closeDialog: function() {

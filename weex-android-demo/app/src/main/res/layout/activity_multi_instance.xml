@@ -10,7 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="哈哈哈，点我，使用另一个WXSDKInstance实例渲染"/>
+        android:text="哈哈哈，点我，打开Weex页面"/>
+
+    <FrameLayout
+        android:id="@+id/container_weex"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
     <FrameLayout
         android:id="@+id/containerA"
@@ -27,8 +33,8 @@
         android:layout_height="200dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:visibility="gone"
         android:padding="20dp"
+        android:visibility="gone"
         />
 
     <RelativeLayout
@@ -36,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp">
+
         <Button
             android:id="@+id/btn_change_view"
             android:layout_width="200dp"

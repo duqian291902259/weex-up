@@ -15,9 +15,9 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
-import site.duqian.weex.Constants;
+import site.duqian.weex.weex.Constants;
 import site.duqian.weex.R;
-import site.duqian.weex.extend.module.User;
+import site.duqian.weex.weex.module.User;
 
 public class NetworkActivity extends BaseActivity {
 

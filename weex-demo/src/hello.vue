@@ -8,7 +8,9 @@
 
 <script>
 const modal = weex.requireModule("modal");
-const myMoudle = weex.requireModule("MyMoudle");
+const myMoudle = weex.requireModule("MyModule");
+const phoneModule = weex.requireModule("PhoneModule");
+const logModule = weex.requireModule("LogModule");
 module.exports = {
   data() {
     return {
@@ -36,7 +38,19 @@ module.exports = {
       this.testSupports();
     },
     testEvent: function() {
-      myMoudle.printLog("myMoudle from A");
+      myMoudle.printLog("myModule from A");
+      var that = this;
+      phoneModule.getPhoneInfo(function (event) { 
+          var object = JSON.stringify(event);
+          logModule.log("weex-dq","getPhoneInfo:"+object);
+          var obj =JSON.parse(event);
+          that.target  = "getPhoneInfo="+event;
+          modal.toast({
+             message: 'getPhoneInfo '+that.target,
+             duration: 3
+           });
+          
+        });
     },
 
     //测试weex是否支持某些模块和功能

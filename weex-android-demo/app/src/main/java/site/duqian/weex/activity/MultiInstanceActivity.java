@@ -12,7 +12,7 @@ import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
 import com.taobao.weex.utils.WXFileUtils;
-import site.duqian.weex.Constants;
+import site.duqian.weex.weex.Constants;
 import site.duqian.weex.R;
 
 import java.util.HashMap;

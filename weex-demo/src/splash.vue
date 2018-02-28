@@ -14,7 +14,7 @@
 var navigator = weex.requireModule("navigator");
 var modal = weex.requireModule("modal");
 var animation = weex.requireModule("animation");
-const myMoudle = weex.requireModule("MyMoudle");
+const myMoudle = weex.requireModule("MyModule");
 module.exports = {
   data: function() {
     return {

@@ -16,9 +16,9 @@ import com.taobao.weex.utils.WXFileUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import site.duqian.weex.Constants;
+import site.duqian.weex.weex.Constants;
 import site.duqian.weex.R;
-import site.duqian.weex.extend.module.User;
+import site.duqian.weex.weex.module.User;
 
 
 public class WeexFragment extends Fragment implements IWXRenderListener {
