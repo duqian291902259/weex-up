@@ -79,7 +79,6 @@ public class WeexInstanceManager {
                 if (("wx_network_error").equals(errCode)) {//网络错误
                     handlerRenderException(url);
                 }
-               
             }
         });
         //添加共参数

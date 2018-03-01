@@ -86,7 +86,6 @@ public class WeexDialogActivity extends AppCompatActivity {
             return;
         }
         ViewGroup container = addViewGroup(500, 600, 600, 800);
-        container.setBackgroundColor(Color.GRAY);
         weexContainer.addView(container);
 
         weexInstanceManager.generateWeexPage(container, new WeexDialogParams(url));
@@ -210,6 +209,8 @@ public class WeexDialogActivity extends AppCompatActivity {
         layoutParams.leftMargin = left;
         layoutParams.topMargin = top;
         container.setLayoutParams(layoutParams);
+        container.setBackgroundColor(Color.GRAY);
+
         return container;
     }
 
