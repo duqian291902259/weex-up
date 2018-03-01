@@ -2,7 +2,7 @@
 ![android-demos](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-demos.png)
 
 ### 不断更新：新增了android工程，weex demos。
-weex开源以来，很多人关注，写了一些weex小案例，仅供参考。可以学习weex原理和应用，跨平台应用的特定语法，前端框架，webpack，vue.js，android集成weex，以及weex调试等。
+weex开源以来，很多人关注，本项目综合了诸多weex小案例，源码包括了android工程和weex工程，仅供参考。可以学习weex原理和应用，跨平台应用的特定语法，前端框架，webpack，vue.js，android集成weex，以及weex调试等。
 
 release apk下载：
 [weex-android-demos-release.apk](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-demos-release.apk)
@@ -26,15 +26,19 @@ A framework for building Mobile cross-platform UI: [https://github.com/apache/in
 
 基于weex sdk及官方demo，使用vue写weex页面，web和android端测试渲染效果，新增了多个实例demo，js来自weex-demo编译打包后的js bundle文件，放在assets目录里面。更新如下：
 
-##### 1，同一Activity，多WXSDKInstance渲染多个Weex页面。
+##### 1，同一界面，用多WXSDKInstance渲染多个Weex页面。
 
-##### 2，从asset目录，网络加载weex js。
+##### 2，从本地asset目录，和网络加载weex js。
 
 ##### 3，Native和Weex页面交互，子页面间消息传递。
 
 ##### 4，拓展原生module，图片加载，Toast，获取Native信息等。
 
-##### 5，客户端测试新的weex-ui组件。
+##### 5，客户端weex-ui组件案例。
+
+##### 6，动态创建weex窗口，显示，隐藏，关闭窗口实例。
+
+##### 7，weex窗口管理器
 
 ## weex-demo
 使用最新的weex版本，用vue.js开发的一些demo，测试常用的一些场景。配合weex-android-demo使用。
@@ -48,6 +52,9 @@ A framework for building Mobile cross-platform UI: [https://github.com/apache/in
 ##### 4，BroadcastChannel消息机制，事件监听回调。
 
 ##### 5，storage本地存储，测试新的weex-ui组件。
+
+##### 6，检测natvie是否支持某个module/某个方法。
+
 
 ![splash](https://github.com/duqian291902259/weex-demo-dusan/blob/master/screenshot/weex-demo-dusan.gif)
 ![weex-android-local-js](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-local-js.png)

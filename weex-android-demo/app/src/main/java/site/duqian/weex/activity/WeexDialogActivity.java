@@ -15,9 +15,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -29,14 +26,8 @@ import site.duqian.weex.weex.WeexInstanceManager;
 
 public class WeexDialogActivity extends AppCompatActivity {
 
-    //server端js测试
-    private static String BASE_HOST = "http://192.168.0.68:8081";
-    //private static String LOCAL_JS_URL = BASE_HOST+"/dist/hello.js";
-    //private static String TEST_URL = BASE_HOST+"/dist/postmsg.js";
-    //本地js测试
-    private static String LOCAL_JS_URL = "file://weex/hello.js";
-    private static String TEST_URL = "file://weex/postmsg.js";
-    private Map<String, ViewGroup> weexContainerMap = new HashMap<>();
+
+    //private Map<String, ViewGroup> weexContainerMap = new HashMap<>();
 
     @BindView(R.id.container_weex)
     FrameLayout weexContainer;
@@ -70,16 +61,17 @@ public class WeexDialogActivity extends AppCompatActivity {
     }
 
     private float changeSize = 0f;
+
     @OnClick(R.id.btn_change_view)
     public void changeView() {
-        WeexDialogParams params = new WeexDialogParams(Constants.LOCAL_SERVER_JS, "", 0.1, 0.1, 0.5 +changeSize, 0.3, 1);
+        WeexDialogParams params = new WeexDialogParams(Constants.LOCAL_SERVER_JS, "", 0.1, 0.1, 0.5 + changeSize, 0.3, 1);
         resizeWeexDialog(params);
-        changeSize+=0.02;
+        changeSize += 0.02;
     }
 
     private void initData() {
         context = this;
-        weexInstanceManager = new WeexInstanceManager(context);
+        weexInstanceManager = new WeexInstanceManager(context, weexContainer);
         screenWidth = CommonUtils.getScreenWidth(context);
         screenHeight = CommonUtils.getScreenHeight(context);
         tv_info.setText(R.string.weex_dialog_tips);
@@ -88,7 +80,7 @@ public class WeexDialogActivity extends AppCompatActivity {
 
     private void renderWeexPageA() {
         String url = Constants.LOCAL_SERVER_JS2;
-        ViewGroup viewGroup = weexContainerMap.get(url);
+        ViewGroup viewGroup = weexInstanceManager.getContainerMap().get(url);
         if (viewGroup != null) {
             viewGroup.setVisibility(View.VISIBLE);
             return;
@@ -97,8 +89,7 @@ public class WeexDialogActivity extends AppCompatActivity {
         container.setBackgroundColor(Color.GRAY);
         weexContainer.addView(container);
 
-        weexInstanceManager.generateWeexPage(container, url, null);
-        weexContainerMap.put(url, container);
+        weexInstanceManager.generateWeexPage(container, new WeexDialogParams(url));
     }
 
     /**
@@ -139,7 +130,7 @@ public class WeexDialogActivity extends AppCompatActivity {
      */
     private void showOrHideWeexDialog(WeexDialogParams params, boolean isShow) {
         if (params != null && !TextUtils.isEmpty(params.url)) {
-            ViewGroup viewGroup = weexContainerMap.get(params.url);
+            ViewGroup viewGroup = weexInstanceManager.getContainerMap().get(params.url);
             if (viewGroup == null) {
                 return;
             }
@@ -156,15 +147,7 @@ public class WeexDialogActivity extends AppCompatActivity {
             String url = params.url;
             showOrHideWeexDialog(params, false);
             weexInstanceManager.removeInstance(url);
-            removeContainer(url);
-        }
-    }
-
-    private void removeContainer(String url) {
-        ViewGroup viewGroup = weexContainerMap.get(url);
-        if (viewGroup != null) {
-            weexContainer.removeView(viewGroup);
-            weexContainerMap.remove(url);
+            weexInstanceManager.removeContainer(url);
         }
     }
 
@@ -179,7 +162,7 @@ public class WeexDialogActivity extends AppCompatActivity {
             int top = (int) (screenHeight * params.y);
             int width = (int) (screenWidth * params.width);
             int height = (int) (screenHeight * params.height);
-            ViewGroup container = weexContainerMap.get(params.url);
+            ViewGroup container = weexInstanceManager.getContainerMap().get(params.url);
             Log.d("dq", "resize WeexDialog left=" + left + ",top=" + top + ",width=" + width + ",heigth=" + height);
 
             if (container != null) {
@@ -204,7 +187,7 @@ public class WeexDialogActivity extends AppCompatActivity {
             if (TextUtils.isEmpty(url)) {
                 return;
             }
-            removeContainer(url);
+            weexInstanceManager.removeContainer(url);
 
             int left = (int) (screenWidth * params.x);
             int top = (int) (screenHeight * params.y);
@@ -212,8 +195,7 @@ public class WeexDialogActivity extends AppCompatActivity {
             int height = (int) (screenHeight * params.height);
             ViewGroup container = addViewGroup(left, top, width, height);
             weexContainer.addView(container);
-            weexInstanceManager.generateWeexPage(container, url, params.data);
-            weexContainerMap.put(url, container);
+            weexInstanceManager.generateWeexPage(container, params);
         }
     }
 
@@ -262,6 +244,5 @@ public class WeexDialogActivity extends AppCompatActivity {
             context.unregisterReceiver(receiver);
             receiver = null;
         }
-        weexContainerMap.clear();
     }
 }

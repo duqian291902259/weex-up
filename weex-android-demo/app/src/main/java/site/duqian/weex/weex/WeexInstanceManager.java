@@ -1,12 +1,12 @@
 package site.duqian.weex.weex;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.FrameLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.taobao.weex.IWXRenderListener;
@@ -25,78 +25,114 @@ import java.util.Map;
 public class WeexInstanceManager {
 
     private Context context;
+    private ViewGroup weexContainerParent;
 
-    public WeexInstanceManager(Context context) {
+    public WeexInstanceManager(Context context, FrameLayout weexContainer) {
         this.context = context;
+        this.weexContainerParent = weexContainer;
     }
 
     /*key 为weex页面url地址，value为窗口实例*/
     private Map<String, WXSDKInstance> instanceMap = new HashMap<>();
+    private Map<String, ViewGroup> containerMap = new HashMap<>();
 
-    public WXSDKInstance generateWeexPage(final ViewGroup container, final String url, String data) {
-        /*WXSDKInstance mWXSDKInstance = instanceMap.get(url);
-        if (mWXSDKInstance == null) {
-            mWXSDKInstance = new WXSDKInstance(context);
-            instanceMap.put(url, mWXSDKInstance);
-        }*/
+    /**
+     * 创建新的weex页面/窗口
+     *
+     * @param container 父容器
+     * @param params    传递的参数
+     * @return
+     */
+    public void generateWeexPage(final ViewGroup container, final WeexDialogParams params) {
+        if (container == null || params == null || context == null) {
+            return;
+        }
+        final String url = params.url;
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
         removeInstance(url);
         WXSDKInstance mWXSDKInstance = new WXSDKInstance(context);
         instanceMap.put(url, mWXSDKInstance);
+        containerMap.put(url, container);
 
         mWXSDKInstance.registerRenderListener(new IWXRenderListener() {
             @Override
             public void onViewCreated(WXSDKInstance instance, View view) {
-                container.removeView(view);
+                container.removeAllViews();
                 container.addView(view);
             }
 
             @Override
             public void onRenderSuccess(WXSDKInstance instance, int width, int height) {
-
+                Log.d("dq generateWeexPage", "onRenderSuccess,w=" + width + ",h=" + height);
             }
 
             @Override
             public void onRefreshSuccess(WXSDKInstance instance, int width, int height) {
-
+                Log.d("dq generateWeexPage", "onRefreshSuccess,w=" + width + ",h=" + height);
             }
 
             @Override
             public void onException(WXSDKInstance instance, String errCode, String msg) {
-                instanceMap.remove(url);
-                Log.e("generateWeexPage", "dq exception:" + errCode + ",msg=" + msg);
-                String text = url + " render error " + msg;
-                TextView textView = new TextView(context);
-                textView.setText(text);
-                Toast.makeText(context, text, Toast.LENGTH_LONG).show();
-                container.removeAllViews();
-                container.addView(textView);
+                Log.d("dq generateWeexPage", "exception:" + errCode + ",msg=" + msg);
+                if (("wx_network_error").equals(errCode)) {//网络错误
+                    handlerRenderException(url);
+                }
+               
             }
         });
         //添加共参数
+        Map<String, Object> options = createOptionsMap(params);
+
+        mWXSDKInstance.renderByUrl(url, url, options, null, WXRenderStrategy.APPEND_ASYNC);
+    }
+
+    @NonNull
+    private Map<String, Object> createOptionsMap(WeexDialogParams params) {
         Map<String, Object> options = null;
-        if (!TextUtils.isEmpty(data)) {
-            options = JSON.parseObject(data);
+        if (!TextUtils.isEmpty(params.data)) {
+            options = JSON.parseObject(params.data);
         }
 
         if (options == null) {
             options = new HashMap<String, Object>();
         }
-        options.put("__la", "cn");
+        options.put("__la", "zh");
+        options.put("__sp", "");
         options.put("ch_1", "duqian");
-
-        mWXSDKInstance.renderByUrl(url, url, options, null, WXRenderStrategy.APPEND_ASYNC);
-        return mWXSDKInstance;
+        return options;
     }
 
-    public Map<String, WXSDKInstance> getInstanceMap() {
-        return instanceMap;
+    private void handlerRenderException(String url) {
+        removeInstance(url);
+        removeContainer(url);
+    }
+
+    public Map<String, ViewGroup> getContainerMap() {
+        return containerMap;
     }
 
     public void removeInstance(String url) {
-        WXSDKInstance wxsdkInstance = instanceMap.get(url);
-        if (wxsdkInstance != null) {
-            wxsdkInstance.destroy();
+        WXSDKInstance mWXSDKInstance = instanceMap.get(url);
+        if (mWXSDKInstance != null) {
+            mWXSDKInstance.destroy();
             instanceMap.remove(url);
+        }
+    }
+
+    public void removeContainer(String url) {
+        ViewGroup viewGroup = containerMap.get(url);
+        if (viewGroup != null) {
+            viewGroup.removeAllViews();
+            containerMap.remove(url);
+        }
+        removeFromParent(viewGroup);
+    }
+
+    private void removeFromParent(ViewGroup viewGroup) {
+        if (weexContainerParent != null && viewGroup != null) {
+            weexContainerParent.removeView(viewGroup);
         }
     }
 
@@ -140,5 +176,6 @@ public class WeexInstanceManager {
             }
         }
         instanceMap.clear();
+        containerMap.clear();
     }
 }
