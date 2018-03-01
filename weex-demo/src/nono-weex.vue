@@ -1,14 +1,16 @@
 <template>
   <div class="wrapper">
-    <text class="title"  @click="closeDialog">Hello DuQian, {{target}} Up!</text>
-    <button class="btn" @click="openDialog">测试nono api</button>
+    <text class="title"  @click="testToast">Hello DuQian, {{target}} Up!</text>
+    <button class="btn" @click="testSupports">检测module是否支持</button>
+    <button class="btn" @click="resizeDialog">resizeDialog</button>
+    <button class="btn" @click="closeDialog">close Dialog</button>
   </div>
 </template>
 
 <script>
 const modal = weex.requireModule("modal");
-const myMoudle = weex.requireModule("MyModule");
 const weexDialog = weex.requireModule("WeexDialogModule");
+const logModule = weex.requireModule("LogModule");
 module.exports = {
   data() {
     return {
@@ -18,21 +20,16 @@ module.exports = {
   },
   methods: {
     testToast: function() {
-      modal.toast({
-        message: "clicked,打开新窗口 ",
-        duration: 1
-      });
       this.target = "Nono";
-      this.sendMessage();
-      this.testSupports();
-
-      this.testEvent();
     },
     openDialog: function() {
        weexDialog.newWeexDialog("{\"data\":\"\",\"height\":0.3,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/index.js\",\"width\":0.4,\"x\":0.1,\"y\":0.5}");
     },
-
+    resizeDialog: function() {
+       weexDialog.resize("{\"data\":\"\",\"height\":0.5,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/nono-weex.js\",\"width\":0.7,\"x\":0.5,\"y\":0.5}");
+    },
     closeDialog: function() {
+       logModule.log("weex-dq","closeDialog");
        weexDialog.close("{\"data\":\"\",\"height\":0.3,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/home.js\",\"width\":0.4,\"x\":0.1,\"y\":0.5}");
     },
 
@@ -44,10 +41,12 @@ module.exports = {
         var duqian = weex.supports('@module/MyMoudle.duqian')  // false
         var mytest = weex.supports('@module/duqian')  // false
         console.log("net", net);
+        var msg = "是否有MyMoudle="+my+",dialog="+dialog+",是否支持stream= "+net+",mytest="+mytest;
         modal.toast({
-          message:"是否有MyMoudle="+my+",dialog="+dialog+",是否支持stream= "+net+",mytest="+mytest,
+          message:msg,
           duration: 10
         });
+        this.target = msg;
     },
   }
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <image class="img" :src="img"  />
-    <button class="btn" @click="getOptions">Hello, Nono Weex</button>
+    <button class="btn" @click="getOptions">Hello, DuQian</button>
     <text class="title"  @click="testToast">result: {{ch_1}}, {{target}} </text>
     <button class="btn" @click="testEvent">Native方法调用</button>
     <!-- <button class="btn" @click="showDialog">显示weex窗口</button> -->
@@ -44,6 +44,9 @@ module.exports = {
       });
       this.target = "ch_1 "+weex.config.ch_1;
     },
+    openDialog: function() {
+       weexDialog.newWeexDialog("{\"data\":\"\",\"height\":0.3,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/nono-weex.js\",\"width\":0.4,\"x\":0.1,\"y\":0.5}");
+    },
     closeDialog: function() {
        logModule.log("weex-dq","closeDialog");
        weexDialog.close();
@@ -75,22 +78,23 @@ module.exports = {
           
         });
 
-        this.resizeDialog();
+        this.openDialog();
 
         var supports = weex.supports('@module/RoomModule');
-        logModule.log("weex-dq","native 不支持 getLoginUserInfo "+supports);
-        if(supports==true){
-            getLoginUserInfo();
+        logModule.log("weex-dq","native是否支持 getLoginUserInfo "+supports);
+        if(supports){
+            this.getUserInfo();
         }
         
     },
-    getLoginUserInfo: function() {
+    getUserInfo: function() {
+       var that = this;//注释掉测试页面存在bug时，native怎么处理
        logModule.log("weex-dq","getLoginUserInfo");
-       roomModule.getLoginUserInfo(function (event) { 
+       roomModule.getLoginUserInfo(function(event) { 
           var object = JSON.stringify(event);
           logModule.log("weex-dq","callback:"+object);
           var obj =JSON.parse(event);
-          that.target  = that.target +",UserInfo="+obj.accessToken+",anchor_intro"+obj.anchor_intro;
+          that.target  = that.target +",UserInfo="+obj.loginname+",my_id"+obj.my_id;
           modal.toast({
              message: 'native '+that.target,
              duration: 3
