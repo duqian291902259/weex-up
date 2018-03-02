@@ -26,7 +26,7 @@ module.exports = {
        weexDialog.newWeexDialog("{\"data\":\"\",\"height\":0.3,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/index.js\",\"width\":0.4,\"x\":0.1,\"y\":0.5}");
     },
     resizeDialog: function() {
-       weexDialog.resize("{\"data\":\"\",\"height\":0.5,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/nono-weex.js\",\"width\":0.7,\"x\":0.5,\"y\":0.5}");
+       weexDialog.resize("{\"data\":\"\",\"height\":0.4,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/nono-weex.js\",\"width\":0.5,\"x\":0.5,\"y\":0.5}");
     },
     closeDialog: function() {
        logModule.log("weex-dq","closeDialog");
@@ -55,9 +55,7 @@ module.exports = {
 <style>
 .wrapper {
   align-items: center;
-  padding-top: 20px;
-  background-color:darkgrey;
-  justify-content: center;
+  padding: 20px;
 }
 .title {
   line-height: 60px;

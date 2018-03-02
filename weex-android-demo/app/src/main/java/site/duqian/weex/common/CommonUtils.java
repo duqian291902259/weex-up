@@ -8,6 +8,14 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.security.MessageDigest;
+
 /**
  * Description:工具类
  *
@@ -71,5 +79,121 @@ public class CommonUtils {
         }
         return screenHeight;
     }
+
+
+    /**
+     * 获取字节数组的MD5值
+     *
+     * @param arrays 字节数组
+     */
+    public static String getMd5(byte[] arrays) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(arrays);
+            return bytesToHex(md.digest());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    /**
+     * 获取字符串的MD5值
+     *
+     * @param src 要获取的字符串
+     */
+    public static String getMd5(String src) {
+        if (src != null) {
+            return getMd5(src.getBytes());
+        }
+        return "";
+    }
+
+    /**
+     * 获取文件的MD5值
+     *
+     * @param file 要获取的文件
+     */
+    public static String getMd5(File file) {
+        String s = null;
+        FileInputStream in = null;
+        try {
+            in = new FileInputStream(file);
+            FileChannel ch = in.getChannel();
+            MappedByteBuffer byteBuffer = ch.map(FileChannel.MapMode.READ_ONLY,
+                    0, file.length());
+
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(byteBuffer);
+            s = bytesToHex(md.digest());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return s;
+    }
+
+    /**
+     * 将byte数组转换为16进制
+     *
+     * @param bytes
+     */
+    public static String bytesToHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < bytes.length; i++) {
+            String hex = Integer.toHexString(0xFF & bytes[i]);
+            if (hex.length() == 1) {
+                sb.append('0');
+            }
+            sb.append(hex);
+        }
+        return sb.toString();
+    }
+
+
+    /**
+     * 写入文件,如果文件已经存在,则覆盖之.
+     *
+     * @param path 文件保存路径
+     * @param data 文件保存的数据
+     * @return 是否写入成功
+     */
+    public static boolean writeData(String path, byte[] data) {
+        return writeData(path, data, false);
+    }
+
+    public static boolean writeData(String path, byte[] data, boolean append) {
+        try {
+            File file = new File(path);
+            makeParentDir(file);
+            FileOutputStream fos = new FileOutputStream(file, append);
+            fos.write(data);
+            fos.flush();
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    private static void makeParentDir(File file) {
+        if (file == null || file.exists()) {
+            return;
+        }
+        File parentFile = file.getParentFile();
+        if (parentFile.exists()) {
+            return;
+        }
+        parentFile.mkdirs();
+    }
+
 
 }

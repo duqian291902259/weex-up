@@ -2,7 +2,7 @@
   <div class="wrapper">
     <image class="img" :src="img"  />
     <button class="btn" @click="getOptions">Hello, DuQian</button>
-    <text class="title"  @click="testToast">result: {{ch_1}}, {{target}} </text>
+    <text class="title"  @click="testToast">result: {{__la}}, {{target}} </text>
     <button class="btn" @click="testEvent">Native方法调用</button>
     <!-- <button class="btn" @click="showDialog">显示weex窗口</button> -->
     <button class="btn" @click="hideDialog">隐藏weex窗口</button>
@@ -22,11 +22,16 @@ module.exports = {
     return {
       img: "http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png",
       target: "Weex",
-      __la:"",
+      __la:"",//直接这样获取不到？
       __sp:"",
       ch_1:"",
     };
   },
+
+  mounted() {
+      console.log("mounted", "mounted");
+      this.__la = weex.config.__la;
+    },
   methods: {
     getOptions: function() {
       var object = weex.config;
@@ -42,10 +47,10 @@ module.exports = {
         message: "clicked2 "+weex.config.__la,//获取render方法传递的options参数值
         duration: 1
       });
-      this.target = "ch_1 "+weex.config.ch_1;
+      this.target = "获取render传递的参数 "+weex.config.url_p+",__la="+weex.config.__la;
     },
     openDialog: function() {
-       weexDialog.newWeexDialog("{\"data\":\"\",\"height\":0.3,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/nono-weex.js\",\"width\":0.4,\"x\":0.1,\"y\":0.5}");
+       weexDialog.newWeexDialog("{\"data\":\"\",\"height\":0.3,\"show\":1,\"uiLevel\":1,\"url\":\"http://192.168.0.112:8081/dist/nono-weex.js\",\"width\":0.5,\"x\":0.1,\"y\":0.5}");
     },
     closeDialog: function() {
        logModule.log("weex-dq","closeDialog");
@@ -118,9 +123,9 @@ module.exports = {
 <style>
 .wrapper {
   align-items: center;
-  padding-top: 20px;
+  padding: 20px;
   background-color: azure;
-  justify-content: center;
+  min-height: 500px;  
 }
 .title {
   line-height: 60px;

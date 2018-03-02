@@ -10,11 +10,13 @@ import android.widget.FrameLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.taobao.weex.IWXRenderListener;
+import com.taobao.weex.RenderContainer;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * Description:Weex 窗体实例管理
@@ -25,42 +27,74 @@ import java.util.Map;
 public class WeexInstanceManager {
 
     private Context context;
-    private ViewGroup weexContainerParent;
+    private ViewGroup weexContainerParent;//weex实例最外层父布局
 
-    public WeexInstanceManager(Context context, FrameLayout weexContainer) {
+    public WeexInstanceManager(Context context, FrameLayout weexContainerParent) {
         this.context = context;
-        this.weexContainerParent = weexContainer;
+        this.weexContainerParent = weexContainerParent;
     }
 
     /*key 为weex页面url地址，value为窗口实例*/
     private Map<String, WXSDKInstance> instanceMap = new HashMap<>();
     private Map<String, ViewGroup> containerMap = new HashMap<>();
 
+    private DQWeexListener listener;
+
+    public void setListener(DQWeexListener listener) {
+        this.listener = listener;
+    }
+
+    /**
+     * 页面发送指令，动态创建weex dialog
+     * @param container weex容器
+     * @param params WeexDialogParams
+     */
+    public void generateWeexPage(final ViewGroup container, final WeexDialogParams params) {
+        generateWeexPage(container, params.url, params.data, params.md5);
+    }
+
     /**
      * 创建新的weex页面/窗口
      *
-     * @param container 父容器
-     * @param params    传递的参数
-     * @return
+     * @param container  父容器
+     * @param url        js bundle文件地址
+     * @param jsonParams 携带的参数
      */
-    public void generateWeexPage(final ViewGroup container, final WeexDialogParams params) {
-        if (container == null || params == null || context == null) {
+    public void generateWeexPage(final ViewGroup container, final String url, final String jsonParams, final String jsonInitData) {
+        if (container == null || TextUtils.isEmpty(url) || context == null) {
             return;
         }
-        final String url = params.url;
-        if (TextUtils.isEmpty(url)) {
-            return;
-        }
+
         removeInstance(url);
-        WXSDKInstance mWXSDKInstance = new WXSDKInstance(context);
+        //开始单文件本地缓存功能
+        WXSDKInstance mWXSDKInstance = new DQWXSDKInstance(context,true);
         instanceMap.put(url, mWXSDKInstance);
         containerMap.put(url, container);
 
-        mWXSDKInstance.registerRenderListener(new IWXRenderListener() {
+        boolean isRenderContainer = container instanceof RenderContainer;
+        if (isRenderContainer) {
+            RenderContainer renderContainer = (RenderContainer) container;
+            mWXSDKInstance.setRenderContainer(renderContainer);
+            renderContainer.setSDKInstance(mWXSDKInstance);
+        }
+        //渲染监听
+        IWXRenderListener renderListener = getRenderListener(isRenderContainer, container);
+        mWXSDKInstance.registerRenderListener(renderListener);
+
+        //添加共参数
+        Map<String, Object> options = createOptionsMap(jsonParams);
+
+        mWXSDKInstance.renderByUrl(url, url, options, jsonInitData, WXRenderStrategy.APPEND_ASYNC);
+    }
+
+    private IWXRenderListener getRenderListener(final boolean isRenderContainer, final ViewGroup container) {
+        return new IWXRenderListener() {
             @Override
             public void onViewCreated(WXSDKInstance instance, View view) {
-                container.removeAllViews();
-                container.addView(view);
+                if (!isRenderContainer) {
+                    container.removeAllViews();
+                    container.addView(view);
+                }
             }
 
             @Override
@@ -77,29 +111,39 @@ public class WeexInstanceManager {
             public void onException(WXSDKInstance instance, String errCode, String msg) {
                 Log.d("dq generateWeexPage", "exception:" + errCode + ",msg=" + msg);
                 if (("wx_network_error").equals(errCode)) {//网络错误
-                    handlerRenderException(url);
+                    handlerRenderException(instance.getBundleUrl());
+                }
+                if (null != listener) {
+                    listener.onException(instance, errCode, msg);
                 }
             }
-        });
-        //添加共参数
-        Map<String, Object> options = createOptionsMap(params);
 
-        mWXSDKInstance.renderByUrl(url, url, options, null, WXRenderStrategy.APPEND_ASYNC);
+        };
     }
 
+    /**
+     * 创建请求的公共参数，map对象
+     *
+     * @param params 给weex页面传递的公参
+     * @return map集合
+     */
     @NonNull
-    private Map<String, Object> createOptionsMap(WeexDialogParams params) {
+    private Map<String, Object> createOptionsMap(String params) {
         Map<String, Object> options = null;
-        if (!TextUtils.isEmpty(params.data)) {
-            options = JSON.parseObject(params.data);
+        if (!TextUtils.isEmpty(params)) {
+            try {
+                options = JSON.parseObject(params);
+            } catch (Exception e) {
+                e.printStackTrace();
+                options=null;
+            }
         }
-
         if (options == null) {
             options = new HashMap<String, Object>();
         }
         options.put("__la", "zh");
         options.put("__sp", "");
-        options.put("ch_1", "duqian");
+        options.put("ch_1", "duqian2010@gmail.com");
         return options;
     }
 

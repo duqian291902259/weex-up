@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -15,16 +14,20 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.taobao.weex.RenderContainer;
+import com.taobao.weex.WXSDKInstance;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import site.duqian.weex.R;
 import site.duqian.weex.common.CommonUtils;
 import site.duqian.weex.weex.Constants;
+import site.duqian.weex.weex.DQWeexListener;
 import site.duqian.weex.weex.WeexDialogParams;
 import site.duqian.weex.weex.WeexInstanceManager;
 
-public class WeexDialogActivity extends AppCompatActivity {
+public class WeexDialogActivity extends AppCompatActivity implements DQWeexListener {
 
 
     //private Map<String, ViewGroup> weexContainerMap = new HashMap<>();
@@ -49,22 +52,26 @@ public class WeexDialogActivity extends AppCompatActivity {
         initData();
         //注册广播，用于动态添加weex页面
         registerWeexReceiver();
-        //测试
+        //测试渲染两个服务端js
+        testAddWeexDialog();
+    }
+
+    private void testAddWeexDialog() {
         WeexDialogParams params = new WeexDialogParams(Constants.LOCAL_SERVER_JS, "", 0.1, 0.1, 0.5, 0.3, 1);
+        params.md5 = Constants.LOCAL_SERVER_JS_MD5;
         createWeexDialog(params);
-        renderWeexPageA();
     }
 
     @OnClick(R.id.tv_info)
     public void openWeexPage() {
-        renderWeexPageA();
+        testAddWeexDialog();
     }
 
     private float changeSize = 0f;
 
     @OnClick(R.id.btn_change_view)
     public void changeView() {
-        WeexDialogParams params = new WeexDialogParams(Constants.LOCAL_SERVER_JS, "", 0.1, 0.1, 0.5 + changeSize, 0.3, 1);
+        WeexDialogParams params = new WeexDialogParams(Constants.LOCAL_SERVER_JS, Constants.LOCAL_SERVER_JS_MD5, 0.1, 0.1, 0.5 + changeSize, 0.3, 1);
         resizeWeexDialog(params);
         changeSize += 0.02;
     }
@@ -72,23 +79,11 @@ public class WeexDialogActivity extends AppCompatActivity {
     private void initData() {
         context = this;
         weexInstanceManager = new WeexInstanceManager(context, weexContainer);
+        weexInstanceManager.setListener(this);
         screenWidth = CommonUtils.getScreenWidth(context);
         screenHeight = CommonUtils.getScreenHeight(context);
         tv_info.setText(R.string.weex_dialog_tips);
         btnChange.setText(R.string.btn_txt_render_again);
-    }
-
-    private void renderWeexPageA() {
-        String url = Constants.LOCAL_SERVER_JS2;
-        ViewGroup viewGroup = weexInstanceManager.getContainerMap().get(url);
-        if (viewGroup != null) {
-            viewGroup.setVisibility(View.VISIBLE);
-            return;
-        }
-        ViewGroup container = addViewGroup(500, 600, 600, 800);
-        weexContainer.addView(container);
-
-        weexInstanceManager.generateWeexPage(container, new WeexDialogParams(url));
     }
 
     /**
@@ -162,9 +157,9 @@ public class WeexDialogActivity extends AppCompatActivity {
             int width = (int) (screenWidth * params.width);
             int height = (int) (screenHeight * params.height);
             ViewGroup container = weexInstanceManager.getContainerMap().get(params.url);
-            Log.d("dq", "resize WeexDialog left=" + left + ",top=" + top + ",width=" + width + ",heigth=" + height);
-
+            //Log.d("dq", "resize WeexDialog left=" + left + ",top=" + top + ",width=" + width + ",heigth=" + height);
             if (container != null) {
+                container.setVisibility(View.VISIBLE);
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) container.getLayoutParams();
                 layoutParams.leftMargin = left;
                 layoutParams.topMargin = top;
@@ -192,28 +187,28 @@ public class WeexDialogActivity extends AppCompatActivity {
             int top = (int) (screenHeight * params.y);
             int width = (int) (screenWidth * params.width);
             int height = (int) (screenHeight * params.height);
-            ViewGroup container = addViewGroup(left, top, width, height);
+            ViewGroup container = createWeexContainer(left, top, width, height);
             weexContainer.addView(container);
             weexInstanceManager.generateWeexPage(container, params);
         }
     }
 
     /**
-     * 动态添加布局
+     * 动态添加布局:FrameLayout
      *
-     * @return
+     * @return weex容器
      */
-    private ViewGroup addViewGroup(int left, int top, int width, int height) {
-        FrameLayout container = new FrameLayout(context);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(width, height);
+    private RenderContainer createWeexContainer(int left, int top, int width, int height) {
+        RenderContainer container = new RenderContainer(context);
+        //FrameLayout container = new FrameLayout(context);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.leftMargin = left;
         layoutParams.topMargin = top;
+        layoutParams.width = width;
+        layoutParams.height = height;  //去掉这个高度则自适应weex设定的高度，但会闪烁
         container.setLayoutParams(layoutParams);
-        container.setBackgroundColor(Color.GRAY);
-
         return container;
     }
-
 
     @Override
     public void onResume() {
@@ -245,5 +240,10 @@ public class WeexDialogActivity extends AppCompatActivity {
             context.unregisterReceiver(receiver);
             receiver = null;
         }
+    }
+
+    @Override
+    public void onException(WXSDKInstance instance, String errCode, String msg) {
+
     }
 }

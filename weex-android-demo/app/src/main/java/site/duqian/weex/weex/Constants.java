@@ -14,8 +14,8 @@ public class Constants {
     public static final String EXAMPLE_URL = "http://dotwe.org/raw/dist/ef2bd84edd068291e8bb8ea334e33cb9.bundle.wx?_wx_tpl=http://dotwe.org/raw/dist/ef2bd84edd068291e8bb8ea334e33cb9.bundle.wx";
     public static String URL_NET_JS = "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js";
     public static final String LOCAL_SERVER_HOST = "http://192.168.0.112:8081/";
-    public static final String LOCAL_SERVER_JS = LOCAL_SERVER_HOST + "dist/nono-weex.js";
-    public static final String LOCAL_SERVER_JS2 = LOCAL_SERVER_HOST + "dist/nonoapi.js";
+    public static final String LOCAL_SERVER_JS = LOCAL_SERVER_HOST + "dist/nonoapi.js";
+    public static final String LOCAL_SERVER_JS_MD5 = "6853f3f630eea8bf2b40ab78fd7072af";
 
     public static final String BC_ACTION_WEEX_DIALOG = "site.duqian.weex.dialog";
     public static final String KEY_PARAM = "param";

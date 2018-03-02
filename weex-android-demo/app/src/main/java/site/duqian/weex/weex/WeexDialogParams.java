@@ -23,6 +23,7 @@ public class WeexDialogParams implements Serializable {
     public double height;
     public int uiLevel;
     public int show;
+    public String md5;
 
     public WeexDialogParams(String url, double x, double y, double width, double height) {
         this.url = url;
