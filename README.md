@@ -2,7 +2,7 @@
 ![android-demos](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-demos.png)
 
 ### 不断更新：新增了android工程，weex demos。
-weex开源以来，很多人关注，本项目综合了诸多weex小案例，源码包括了android工程和weex工程，仅供参考。可以学习weex原理和应用，跨平台应用的特定语法，前端框架，webpack，vue.js，android集成weex，以及weex调试等。
+本项目集合了本人weex研究的各种实例，源码包括了android工程和weex工程，仅供参考。可以学习weex原理和应用，跨平台应用的特定语法，前端框架，webpack，vue.js，android集成weex，以及weex调试等。
 
 release apk下载：
 [weex-android-demos-release.apk](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-demos-release.apk)
@@ -24,7 +24,7 @@ A framework for building Mobile cross-platform UI: [https://github.com/apache/in
 ## About 项目说明：
 ### weex-android-demo
 
-基于weex sdk及官方demo，使用vue写weex页面，web和android端测试渲染效果，新增了多个实例demo，js来自weex-demo编译打包后的js bundle文件，放在assets目录里面。更新如下：
+基于weex sdk，使用vue写weex页面，web和android端测试渲染效果，新增了多个实例demo，js来自weex-demo编译打包后的js bundle文件，放在assets目录里面。更新如下：
 
 ##### 1，同一界面，用多WXSDKInstance渲染多个Weex页面。
 
