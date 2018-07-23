@@ -1,8 +1,8 @@
 # weex-demo-dusan
 ![android-demos](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-demos.png)
 
-### 不断更新：新增了android工程，weex demos。
-本项目集合了本人weex研究的各种实例，源码包括了android工程和weex工程，仅供参考。可以学习weex原理和应用，跨平台应用的特定语法，前端框架，webpack，vue.js，android集成weex，以及weex调试等。
+### 新增了android工程，weex demos。
+本项目源码包括了android工程和weex工程，仅供参考。可以学习weex原理和应用，跨平台应用的特定语法，前端框架，webpack，vue.js，android集成weex，以及weex调试等。
 
 release apk下载：
 [weex-android-demos-release.apk](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-demos-release.apk)
@@ -113,7 +113,7 @@ weex debug index.vue
 ```
 
 ### weex2016
-weex2016,基于weex早期版本，依然适用，但建议移步最新的官方文档。以最新的语法和sdk为准。
+weex2016,基于weex早期版本，弃用！请移步最新的官方文档，以最新的语法和sdk为准。
 
 
 ## Future 
@@ -127,4 +127,3 @@ demo虽小，五脏俱全，weex三端统一，write once，run everywhere，sdk
 
 
 ## Thanks to weex team！
-Weex，We will follow you!
