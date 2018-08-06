@@ -112,18 +112,13 @@ cd path/to/src/
 weex debug index.vue
 ```
 
-### weex2016
-weex2016,基于weex早期版本，弃用！请移步最新的官方文档，以最新的语法和sdk为准。
-
-
 ## Future 
 demo虽小，五脏俱全，weex三端统一，write once，run everywhere，sdk逐步完善，满足各种场景的展示，交互，动画等需求，值得研究和应用。
 
-早期相关博文：
 
-[1，Weex开源测试之环境搭建，weex未来展望](http://blog.csdn.net/dzsw0117/article/details/51702319)
+[website------>   http://www.duqian.site](http://www.duqian.site)
 
-[2，Weex开发笔记](http://blog.csdn.net/dzsw0117/article/details/51773175)
+[CSDN博客-->  http://blog.csdn.net/dzsw0117](http://blog.csdn.net/dzsw0117)
 
 
 ## Thanks to weex team！
