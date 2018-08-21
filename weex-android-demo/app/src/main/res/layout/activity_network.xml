@@ -14,8 +14,8 @@
         android:layout_height="50dp"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="单击重置url，长按清除。从网络加载js文件,也可以用local server，如：\n
-        http://192.168.0.68:8081/dist/postmsg.js"/>
+        android:text="从网络加载js文件,可用本地erver，如：\n
+        http://192.168.0.68:8081/dist/postmsg.js；单击重置url，长按清除。"/>
 
     <EditText
         android:id="@+id/et_js_url"
@@ -32,14 +32,20 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:textSize="20dp"
-        android:text="start render"/>
+        android:text="start render"
+        android:textSize="20dp"/>
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
-        android:layout_gravity="center"
-        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            />
+    </ScrollView>
+
 
 </LinearLayout>
