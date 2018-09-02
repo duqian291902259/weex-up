@@ -1,5 +1,4 @@
 # weex-demo-dusan
-![android-demos](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-demos.png)
 
 ### 新增了android工程，weex demos。
 本项目源码包括了weex前端源码，android工程和IOS demo，仅供参考。可以学习weex原理和应用，跨平台应用的特定语法，前端框架，webpack，vue.js，android集成weex，以及weex调试等。
@@ -11,6 +10,8 @@ android release apk下载：
 
 [https://github.com/duqian291902259/weex-demo-dusan](https://github.com/duqian291902259/weex-demo-dusan)
 
+![android-demos](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-demos.png)
+![weex-android-local-js](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-local-js.png)
 
 ## How to start
 This demo is based on weex.
@@ -55,9 +56,6 @@ A framework for building Mobile cross-platform UI: [https://github.com/apache/in
 
 ##### 6，检测natvie是否支持某个module/某个方法。
 
-
-![splash](https://github.com/duqian291902259/weex-demo-dusan/blob/master/screenshot/weex-demo-dusan.gif)
-![weex-android-local-js](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-local-js.png)
 
 ## weex-ios
 基于官方2018.09月最新demo，加载本地js文件，渲染页面。独立的ios工程，不能使用weex run ios命令直接运行。
@@ -137,3 +135,6 @@ demo虽小，五脏俱全，weex三端统一，write once，run everywhere，sdk
 
 
 ## Thanks to weex team！
+
+
+![splash](https://github.com/duqian291902259/weex-demo-dusan/blob/master/screenshot/weex-demo-dusan.gif)
