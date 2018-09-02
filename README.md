@@ -2,9 +2,9 @@
 ![android-demos](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-demos.png)
 
 ### 新增了android工程，weex demos。
-本项目源码包括了android工程和weex工程，仅供参考。可以学习weex原理和应用，跨平台应用的特定语法，前端框架，webpack，vue.js，android集成weex，以及weex调试等。
+本项目源码包括了weex前端源码，android工程和IOS demo，仅供参考。可以学习weex原理和应用，跨平台应用的特定语法，前端框架，webpack，vue.js，android集成weex，以及weex调试等。
 
-release apk下载：
+android release apk下载：
 [weex-android-demos-release.apk](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-demos-release.apk)
 
 项目github地址，感兴趣的话请star，fork一下吧！
@@ -40,7 +40,7 @@ A framework for building Mobile cross-platform UI: [https://github.com/apache/in
 
 ##### 7，weex窗口管理器
 
-## weex-demo
+## weex-demo-vue
 使用最新的weex版本，用vue.js开发的一些demo，测试常用的一些场景。配合weex-android-demo使用。
 
 ##### 1，使用Vue重写以前的demo，图片加载，轮播图片。
@@ -58,6 +58,21 @@ A framework for building Mobile cross-platform UI: [https://github.com/apache/in
 
 ![splash](https://github.com/duqian291902259/weex-demo-dusan/blob/master/screenshot/weex-demo-dusan.gif)
 ![weex-android-local-js](https://github.com/duqian291902259/weex-demo-dusan/blob/master/release/weex-android-local-js.png)
+
+## weex-ios
+基于官方2018.09月最新demo，加载本地js文件，渲染页面。独立的ios工程，不能使用weex run ios命令直接运行。
+
+```
+##weex run ios命令可能报错，则
+sudo npm i ios-deploy --save --unsafe-perm=true --allow-root
+##设置xcode路径
+sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+##主要是使用cocoapods安装依赖库
+sudo gem install cocoapods
+
+```
+
+![ios-demo](https://github.com/duqian291902259/weex-demo-dusan/blob/master/weex-ios/ios-demo.png)
 
 
 以下是前端开发常用命令：
