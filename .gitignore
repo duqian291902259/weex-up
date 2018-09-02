@@ -14,3 +14,16 @@ misc.xml
 bin/
 gen/
 out/
+#IOS project
+.DS_Store
+xcuserdata
+build
+*.mode1v3
+*.pbxuser
+*.xcworkspace
+*.moved-aside
+DerivedData
+
+# If you are using CocoaPods
+Pods
+Podfile.lock
