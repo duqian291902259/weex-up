@@ -72,7 +72,7 @@ sudo gem install cocoapods
 
 ```
 
-![ios-demo](https://github.com/duqian291902259/weex-demo-dusan/blob/master/weex-ios/ios-demo.png)
+![ios-demo](https://github.com/duqian291902259/weex-demo-dusan/blob/master/weex-ios/weex-run-ios.png)
 
 
 以下是前端开发常用命令：
