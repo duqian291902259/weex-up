@@ -43,7 +43,7 @@ Starts local server for develop weex page:
 Project is running at http://192.168.0.68:8081/
 
 preview your page like:
-http://192.168.0.68:8081/web/index.html?page=/dist/index.js
+http://192.168.0.68:8081/web/index.html?page=/dist/web/index.js
 
 ### weex debug
 

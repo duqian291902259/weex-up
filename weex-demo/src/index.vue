@@ -48,8 +48,8 @@ export default {
       navigator.push(
         {
           url://this.url,
-            "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js",
-             //web用 http://192.168.0.68:8081/web/index.html?page=/dist/web/hello.js
+            //"http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js",
+              "http://192.168.0.5:8081/web/index.html?page=/dist/web/hello.js", //原生和web都能跳转用？
           animated: "false"
         },
         event => {
