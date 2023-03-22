@@ -1,4 +1,4 @@
-# weex-demo-dusan
+# weex-up
 
 ### 新增了android工程，weex demos。
 本项目源码包括了weex前端源码，android工程和IOS demo，仅供参考。可以学习weex原理和应用，跨平台应用的特定语法，前端框架，webpack，vue.js，android集成weex，以及weex调试等。
