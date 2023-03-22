@@ -1,5 +1,7 @@
 # weex-android-demo
 
+仅供参考，请以官方API为准
+
 ### Start
 这个demo基于weex sdk及官方demo，新增了多个weex页面（源码在weex-demo里面），原生与weex交互的实例。
 
